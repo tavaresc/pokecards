@@ -1,0 +1,5 @@
+[0m[[0mdebug[0m] [0mCopy resource mappings: [0m
+[0m[[0mdebug[0m] [0m	(/home/claudia/ZengularityProject/github/pokecards/conf/messages,/home/claudia/ZengularityProject/github/pokecards/target/scala-2.12/classes/messages)[0m
+[0m[[0mdebug[0m] [0m	(/home/claudia/ZengularityProject/github/pokecards/conf/routes,/home/claudia/ZengularityProject/github/pokecards/target/scala-2.12/classes/routes)[0m
+[0m[[0mdebug[0m] [0m	(/home/claudia/ZengularityProject/github/pokecards/conf/application.conf,/home/claudia/ZengularityProject/github/pokecards/target/scala-2.12/classes/application.conf)[0m
+[0m[[0mdebug[0m] [0m	(/home/claudia/ZengularityProject/github/pokecards/conf/logback.xml,/home/claudia/ZengularityProject/github/pokecards/target/scala-2.12/classes/logback.xml)[0m
