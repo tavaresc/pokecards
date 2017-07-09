@@ -1,8 +1,9 @@
 package controllers
 
 import javax.inject._
-
+import play.api._
 import play.api.mvc._
+
 import services.Counter
 
 /**
@@ -12,8 +13,7 @@ import services.Counter
  * object is injected by the Guice dependency injection system.
  */
 @Singleton
-class CountController @Inject() (cc: ControllerComponents,
-                                 counter: Counter) extends AbstractController(cc) {
+class CountController @Inject() (counter: Counter) extends Controller {
 
   /**
    * Create an action that responds with the [[Counter]]'s current

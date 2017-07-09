@@ -1,8 +1,11 @@
-# Pokeapli
+[<img src="https://img.shields.io/travis/playframework/play-scala-starter-example.svg"/>](https://travis-ci.org/playframework/play-scala-starter-example)
+
+# Play Scala Starter
 
 This is a starter application to show many Pokemons cards such as in the "Top
-Trumps" game. It is build from the play-scala-starter-example available at
+Trumps" game. It is build from the Play Java Starter Example (2.5.x) available at
 https://github.com/playframework/play-scala-starter-example/tree/2.5.x .
+
 
 ## Running
 
@@ -13,3 +16,5 @@ sbt run
 ```
 
 And then go to http://localhost:9000 to see the running web application.
+
+There are several demonstration files available in this template.
