@@ -1,7 +1,7 @@
 # Pokeapli
 
 This is a starter application to show many Pokemons cards such as in the "Top
-Trumps"game. It is build from the play-scala-starter-example available at
+Trumps" game. It is build from the play-scala-starter-example available at
 https://github.com/playframework/play-scala-starter-example/tree/2.5.x .
 
 ## Running
