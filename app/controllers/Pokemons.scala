@@ -10,7 +10,8 @@ import models.Pokemon
  */
 class Pokemons @Inject() extends Controller() {
   def list = Action { implicit request =>
-    val pokemons = Pokemon.findAll
-    Ok(views.html.pokemons.list(pokemons))
+    Ok(views.html.pokemons.list(List[pk.Pokemon]()))
+    //val pokemons = Pokemon.findAll
+    //Ok(views.html.pokemons.list(pokemons))
   }
 }

@@ -1,15 +1,27 @@
 @*
  * This template is called from the `pokewelcome` template. This template
  * handles the rendering of the page header and body tags. It takes
- * two arguments, a `String` for the title of the page and an `Html`
- * object to insert into the body of the page.
+ * a single argument `List` of pokemons to display.
+ * 
+ * @(pokemons: List[Pokemon])
+ * @main("My pokemons") {
+ *  <ul class="pokemons">
+ *    @for(pokemon <- pokemons) {
+ *      <li>@pokemon.name: @pokemon.category</li>
+ *    }
+ *  </ul>
+ * }
  *@
-@(pokemons: List[Pokemon])
 
+
+@(l: List[pk.Pokemon])
 @main("My pokemons") {
-  <ul class="pokemons">
-    @for(pokemon <- pokemons) {
-    <li>@pokemon.name: @pokemon.category</li>
-      }
-  </ul>
+IT DOESN'T WORK
+<ul class="pokemons">
+  @for(p <- l) {
+    <li>@p.name</li>
+  }
+</ul>
 }
+
+

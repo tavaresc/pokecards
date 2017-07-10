@@ -1,0 +1,48 @@
+@*
+ * This template is called from the `pokewelcome` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * a single argument `List` of pokemons to display.
+ * 
+ *@
+
+@(pokemon: pk.Pokemon)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-7">
+    <title>@(pokemon.name)</title>
+</head>
+<body>
+@(pokemon.id)
+@(pokemon.height)
+@(pokemon.weight)
+@(pokemon.base_experience)
+<h2>Stats</h2>
+<ul>
+@for(s <- pokemon.stats){
+    <li>@(s.stat.name) : @(s.base_stat) -- @(s.effort) </li>
+}
+</ul>
+
+<h2>Abilities</h2>
+<ul class="list-group">
+    @for(a <- pokemon.abilities){
+    <li class="list-group-item">@(a.ability.name) : @(a.slot) </li>
+    }
+</ul>
+
+<h2>Moves</h2>
+<ul>
+    @for(m <- pokemon.moves){
+    <li>@(m.move.name)</li>
+    }
+</ul>
+
+<h2>Sprites</h2>
+<ul>
+    <li><img src="@(pokemon.sprites.front_default)" alt=""/></li>
+    <li><img src="@(pokemon.sprites.front_shiny)" alt=""/></li>
+</ul>
+</body>
+</html>

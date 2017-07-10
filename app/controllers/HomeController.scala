@@ -18,7 +18,7 @@ class HomeController @Inject() extends Controller {
    * a path of `/`.
    */
   def index = Action {
-    Ok(views.html.index("Your new pokeappli is ready."))
+    Ok(views.html.index("Your new pokeappli is readyyyyy.", List[pk.Pokemon]()))
     //Redirect(routes.Pokemons.list())
   }
 
