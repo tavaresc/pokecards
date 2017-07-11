@@ -4,13 +4,13 @@
 
 # An example controller showing a sample home page
 GET     /                           controllers.HomeController.index
-# My pokemon example controller showing a sample home page
+# My pokemon example controller showing all pokemons
 GET     /pokemons                   controllers.Pokemons.list
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
 GET     /message                    controllers.AsyncController.message
-# An example controller showing how to write asynchronous code
+# My pokemon example controller showing the details of a pokemon
 GET     /pokemon/:name              controllers.AsyncController.getName(name)
 
 # Map static resources from the /public folder to the /assets URL path

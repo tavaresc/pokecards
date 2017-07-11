@@ -1,72 +1,120 @@
-/*
+/**
  * This package is responsible for all that concerns the interaction with the
  * PokeAPI.
- * This file is to define the data model for the resources got from the Poke
- * API version 2.
+ * This file is to define the ADT -- Abstract Data Type -- (data model) for the resources
+ * got from the Poke API version 2.
  */
 package pk
 
-// Name and URL of a resource
-// http://pokeapi.co/docsv2/#namedapiresource
+/*
+ * NamedAPIResource (basic pokeapi element).
+ * See http://pokeapi.co/docsv2/#namedapiresource
+ * @param name the name of the resource
+ * @param url the URL of the resource
+ */
 case class NamedAPIResource(name:String, url: String)
 
-// Stat (a NamedAPIResource), effort points in stat and base value of the stat
-//https://pokeapi.co/docsv2/#pokemon
+/*
+ * PokemonStat (a NamedAPIResource) of a pokemon.
+ * See https://pokeapi.co/docsv2/#pokemon
+ * @param stat the stat of the pokemon
+ * @param effort the effort points of the pokemon
+ * @param base_stat the minimum value of stat
+ */
 case class PokemonStat(stat:NamedAPIResource, effort: Int, base_stat: Int)
 
-// Flag for hidden ability, the slot it occupies in species and ability
-// https://pokeapi.co/docsv2/#pokemonability
+/*
+ * PokemonAbility of a pokemon.
+ * See https://pokeapi.co/docsv2/#pokemonability
+ * @param is_hidden flag for the ability
+ * @param slot the slot it occupies in species
+ * @param ability the ability of the pokemon
+ */
 case class PokemonAbility(
                          is_hidden: Boolean,
                          slot: Int,
                          ability: NamedAPIResource
                          )
 
-// Method of learning, version group in which it is learned and minimum level to
-// learn
-// http://pokeapi.co/docsv2/#pokemonmoveversion
+/*
+ * PokemonMoveVersion of a pokemon.
+ * See http://pokeapi.co/docsv2/#pokemonmoveversion
+ * @param move_learn_method the method of learning
+ * @param version_group the version group in which it is learnt
+ * @param level_learned_at the minimum level to learn
+ */
 case class PokemonMoveVersion(
                              move_learn_method: NamedAPIResource,
                              version_group: NamedAPIResource,
                              level_learned_at: Int
                              )
 
-// Move that can be learnt and in which version group
-// https://pokeapi.co/docsv2/#pokemonmove
+/*
+ * PokemonMove of a pokemon.
+ * See https://pokeapi.co/docsv2/#pokemonmove
+ * @param move the move that can be learnt
+ * @param version_group_details the version group in which it is
+ */
 case class PokemonMove(
                       move: NamedAPIResource,
                       version_group_details: List[PokemonMoveVersion]
                       )
 
+/*
+ * Sprite of a pokemon.
+ * Some do not have all the fields: what to do then ?
+ * See https://pokeapi.co/docsv2/#moves
+ * @param front_default the default depiction of a pokemon
+ * @param front_shiny the depiction of a pokemon in a shy mood
+ */
+case class PokemonSprites(front_default: String, front_shiny: String)
 
-// Some do not have all the fields: what to do then ?
-// Depiction or different angles, moods and genders
-// https://pokeapi.co/docsv2/#pokemonsprites
-case class PokemonSprites(
-                         front_default: String,
-                         front_shiny: String
-                         )
+/*
+ * Type of a pokemon.
+ * See https://pokeapi.co/docsv2/#pokemontype
+ * We add backquotes to the `type` parameter since is a Scala keyword; it also
+ * facilitated the Json calling.
+ * See https://stackoverflow.com/questions/34017680/scala-reserved-word-as-json-field-name-with-json-writesa-play-equivalent-for
+ * @param slot the order (index) of a pokemon type
+ * @param `type` the type of a pokemon
+ */
+case class PokemonType (slot: Int, `type`: NamedAPIResource)
 
-// Order (index) and type of a pokemon
-// https://pokeapi.co/docsv2/#pokemontype
-// type is a keyword in Scala cannot use it
-// see PkAPI to check how we read the value anyway
-case class PokemonType (slot: Int, _type: NamedAPIResource)
-
-// Version including item and rarity degree
-// http://pokeapi.co/docsv2/#pokemonhelditemversion
-case class PokemonHeldItemVersion(
-                                 version: NamedAPIResource,
-                                 rarity: Int
-                                 )
-
-// Item of the pokemon and details of different versions having this item
-// https://pokeapi.co/docsv2/#pokemonhelditem
+/**
+ * Item of a pokemon (what a pokemon holds).
+ * See https://pokeapi.co/docsv2/#pokemonhelditem
+ * @param item the item the pokemon holds
+ * @param version_details the details of different version of the item
+ */
 case class PokemonHeldItem(item: NamedAPIResource,
                            version_details: List[PokemonHeldItemVersion])
 
-// A single Pokemon containing many resources
-// https://pokeapi.co/docsv2/#pokemon
+/*
+ * Version of a pokemon item (what a pokemon holds).
+ * See https://pokeapi.co/docsv2/#pokemonhelditemversion
+ * @param version the version in which the item is hold
+ * @param rarity the rarity degree of an item
+ */
+case class PokemonHeldItemVersion(version: NamedAPIResource, rarity: Int)
+
+/*
+ * Single pokemon containing many resources
+ * See https://pokeapi.co/docsv2/#pokemon
+ * @param id the pokemon id
+ * @param name the pokemon name
+ * @param base_experience the base experience gained from this pokemon
+ * @param height the height of the pokemon
+ * @param weight the weight of the pokemon
+ * @param is_default flag to set an single default pokemon
+ * @param abilities the abilities of a pokemon
+ * @param forms the forms a pokemon can takes
+ * @param stats the base stats of a pokemon
+ * @param moves the moves of a pokemon
+ * @param sprites the sprites of a pokemon
+ * @param species the species a pokemon belongs to
+ * @param types the types a pokemon has
+ * @param the items a pokemon holds
+ */
 case class Pokemon(id: Int,
                    name: String,
                    base_experience: Int,
@@ -82,3 +130,11 @@ case class Pokemon(id: Int,
                    types: List[PokemonType],
                    held_items : List[PokemonHeldItem]
                   )
+
+/*
+ * Simplified version of a pokemon element (for internal purposes).
+ * @param slot the order of a pokemon
+ * @param pokemon the real pokemon
+ */
+case class PokemonElement(slot:Int, pokemon: NamedAPIResource)
+

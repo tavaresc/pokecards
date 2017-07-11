@@ -1,4 +1,4 @@
-/*
+/**
  * This package is responsible for all that concerns the interaction with the
  * PokeAPI.
  * This file is to define the connexion with the Poke API version 2.
@@ -19,20 +19,26 @@ import play.api.libs.json._
 import play.api.libs.json.Reads._
 import play.api.libs.functional.syntax._
 
+/**
+ * This class uses Json to do requests over the pokeapi.co and fill our model
+ * @param ws We need the `WSClient` to call HTTP services.
+ * @param exec We need an `ExecutionContext` to execute our
+ * asynchronous code.
+ */
 class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
 
   // Set the poke API URL
   val base_url = "http://pokeapi.co"
 
+  // Set other useful URLs
   private def extend_base_url(s:String):String = "%s/api/v2/%s/".format(base_url, s)
-
-  private def pokedex_url() = extend_base_url("pokemon/?")
   private def pokemon_url() = extend_base_url("pokemon")
   private def named_pokemon_url(name:String) : String = extend_base_url("pokemon/%s".format(name))
+  private def type_url(name:String) : String = extend_base_url("type/%s".format(name))
 
-  // implicit val pokedexReads = Json.reads[Pokedex]
-  // Automatic type convertion
-  // https://www.playframework.com/documentation/2.5.x/ScalaJsonAutomated
+  // Automatic type convertion using Json
+  // See https://www.playframework.com/documentation/2.5.x/ScalaJsonAutomated
+  // See https://www.playframework.com/documentation/2.5.x/ScalaJsonCombinators
   implicit val namedUriReads = Json.reads[NamedAPIResource]
   implicit val statReads = Json.reads[PokemonStat]
   implicit val abilityReads = Json.reads[PokemonAbility]
@@ -41,47 +47,60 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
   implicit val moveReads = Json.reads[PokemonMove]
   implicit val spritesReads = Json.reads[PokemonSprites]
 
-  // https://www.playframework.com/documentation/2.5.x/ScalaJsonCombinators
-  // We are forced to do that because type is a Scala keyword
-  // Therefore we need some manual mapping here, provided by the lines below
-  implicit val typeReads : Reads[PokemonType] = (
-    (JsPath \ "slot").read[Int] and
-      (JsPath \ "type").read[NamedAPIResource]
-    )(PokemonType.apply _)
-
+  implicit val typeReads = Json.reads[PokemonType]
+  implicit val elementReads = Json.reads[PokemonElement]
   implicit val heldItemVersionReads = Json.reads[PokemonHeldItemVersion]
   implicit val heldItemReads = Json.reads[PokemonHeldItem]
   implicit val pokemonReads = Json.reads[Pokemon]
 
-  // A HTTP request to the poke API.
-  // It might be useful to access resource URIs directly
-  def getPureUri(uri:String) = { ws.url("%s%s".format(base_url,uri)).get.map{r => r.json} }
-
-  def getPokemonList() : Future[List[Pokemon]]= {
-    val rq : WSRequest = ws.url(pokedex_url())
-    // Process the json response
-    val response = rq.get().map{ r => (r.json \ "results").get.as[List[Pokemon]]}
-    response
+  /**
+   * Request an HTML URL
+   * @param uri the URL to call
+   * @return the URL requested
+   */
+  // Might be useful to access resource URIs directly
+  def getPureUri(uri:String) = {
+    ws.url("%s%s".format(base_url,uri)).get.map{r => r.json}
   }
 
-   def getPokemon() = {
-    ws.url(pokemon_url()).get().map(r => r.json)
+  /**
+   * Get the pokemons from the pokeapi
+   * @return a list of the first 20 pokemons
+   */
+  def getPokemon(): Future[List[Pokemon]] = {
+    ws.url(pokemon_url()).get().map(r => r.json.as[List[Pokemon]])
   }
 
-  def getPokemonFromName(name:String): Future[Pokemon] = {
-    ws.url(named_pokemon_url(name)).get().map{
-      r => r.json.as[Pokemon]
-    }
-
+  /**
+   * Get a pokemon from the pokeapi
+   * @param name a pokemon name
+   * @return the pokemon with that name
+   */
+  def getPokemonFromName(name: String): Future[Pokemon] = {
+    ws.url(named_pokemon_url(name)).get().map(r => r.json.as[Pokemon])
   }
 
+  /**
+   * Get a pokemon from the pokeapi
+   * @param id a pokemon id
+   * @return the pokemon with that id
+   */
   def getPokemonFromId(id: Int) = {
     getPokemonFromName("%d".format(id)) // This is an abuse w.r.t to typing
   }
 
+  /**
+   * Get all pokemons of an specific type from the pokeapi
+   * @param pokemon_type a valid PokemonType
+   * @return a list of pokemons with that type
+   */
+  def getAllPokemonSameType(pokemon_type: PokemonType):
+    Future[List[PokemonElement]] = {
+      val name = pokemon_type.`type`.name
+      val url = type_url(name)
 
-  def getType() = {
-
-
+      println(url) // printing on sbt for debug
+      ws.url(url).get.map(
+        r => (r.json \ "pokemon").get.as[List[PokemonElement]])
   }
 }

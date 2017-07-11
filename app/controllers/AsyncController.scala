@@ -2,17 +2,19 @@ package controllers
 
 import akka.actor.ActorSystem
 import javax.inject._
+
 import play.api._
 import play.api.mvc._
-import scala.concurrent.{ExecutionContext, Future, Promise}
+
+import scala.concurrent.{ExecutionContext, Future, Promise, future}
 import scala.concurrent.duration._
 import scala.util.Random
+import scala.util.{Success, Failure}
 
-/* Enable the use of the WS API */
-import play.api.libs.ws._
-
-/* Import my pokemon library */
+// Import my pokemon library
 import pk._
+
+
 
 /**
  * This controller creates an `Action` that demonstrates how to write
@@ -21,12 +23,13 @@ import pk._
  *
  * @param actorSystem We need the `ActorSystem`'s `Scheduler` to
  * run code after a delay.
- * @param papi We need to call the poke API 'PkAPI'.
+ * @param papi We need the `PkAPI` to build our Pokemon models and libraries
  * @param exec We need an `ExecutionContext` to execute our
  * asynchronous code.
  */
 @Singleton
-class AsyncController @Inject() (actorSystem: ActorSystem, papi:pk.PkAPI)(implicit exec: ExecutionContext) extends Controller {
+class AsyncController @Inject() (actorSystem: ActorSystem, papi:pk.PkAPI)
+  (implicit exec:ExecutionContext) extends Controller {
 
   /**
    * Create an Action that returns a plain text message after a delay
@@ -37,29 +40,57 @@ class AsyncController @Inject() (actorSystem: ActorSystem, papi:pk.PkAPI)(implic
    * a path of `/message`.
    */
   def message = Action.async {
-    //val id = Random.nextInt(150)
-    
-    // Get a list of all pokemons in the Poke API
-    val p = papi.getPokemonList()
+    val id = Random.nextInt(150)
+    val p = papi.getPokemonFromId(id)
     p.map(pk =>
       // Ok("We're ready with %d pokemons".format(pkdx.length))
-      Ok(views.html.index("Wohoo", pk))
+      Ok(views.html.pokemon_detail(pk, List[String]()))
     )
     //getFutureMessage(1.second).map { msg => Ok(msg) }
   }
 
   /**
-   * Get a pokemon from the PokeAPI by its name and show it in the web page
-   */
-  def getName (name:String) = Action.async {
-    val p = papi.getPokemonFromName(name)
-    p.map(pk =>
-      // Ok("We're ready with %d pokemons".format(pkdx.length))
-      Ok(views.html.card(pk))
-    )
-    //getFutureMessage(1.second).map { msg => Ok(msg) }
+  * Get all "brothers" of a pokemon.
+  * A brother is another pokemon with the same type.
+  * @param pkmon a pokemon instance
+  * @return all other pokemons having the same type
+  */
+  // Maybe it should be called a cousin ? Or a type_cousin ?
+  private def brothers(pkmon: Pokemon): Future[List[String]]= {
+    // `aux` recursive auxiliar function to iterate on the list of PokemonType
+    // by pattern matching
+    def aux(types:List[PokemonType]): Future[List[String]] = {
+      types match {
+        case Nil => Future { List[String]() }
+        case  ty :: tys =>
+          println("Type:" + ty.`type`.name) // printing on sbt for debug
+          val pokemon_elements = papi.getAllPokemonSameType(ty)
+          for { // `for-yield` combinator for future lists
+            pelts <- pokemon_elements
+            other_guys <- aux(tys)
+          } yield ("New type " + ty.`type`.name) :: pelts.map(
+              pty => pty.pokemon.name) ++ other_guys
+      }
+    }
+    aux(pkmon.types)
   }
 
+  /**
+   * Create an Action that returns the detailed view of a pokemon and all its
+   * brothers
+   * @param name the pokemon's name
+   */
+  def getName (name:String) = Action.async {
+    val pkmon = papi.getPokemonFromName(name)
+    for { // `for-yield` combinator for future lists
+      p <- pkmon
+      bs <- brothers(p)
+    } yield Ok(views.html.pokemon_detail(p, bs))
+  }
+
+  /**
+  * Working with Future objects
+  */
   private def getFutureMessage(delayTime: FiniteDuration): Future[String] = {
     val promise: Promise[String] = Promise[String]()
     actorSystem.scheduler.scheduleOnce(delayTime) { promise.success("Hi!") }
