@@ -11,6 +11,9 @@ import scala.concurrent.duration._
 import scala.util.Random
 import scala.util.{Success, Failure}
 
+// Using loggers
+import play.api.Logger
+
 // Import my pokemon library
 import pk._
 
@@ -55,12 +58,14 @@ class AsyncController @Inject() (actorSystem: ActorSystem, papi:pk.PkAPI)
    * @param name the pokemon's name
    */
   def getName (name:String) = Action.async {
+    //Logger.debug("getName Async - name: " + name)
     val pkmon = papi.getPokemonFromName(name)
+    //Logger.debug("getName again Async")
     for { // `for-yield` combinator for future lists
       p <- pkmon
       bs <- papi.findBrothers(p)
-      stats <- papi.getFutureStats(papi.findBrothers(p))
-    } yield Ok(views.html.pokemon_detail(p, bs, stats.take(5)))
+      stats <- papi.getFutureStats(Future{ bs.take(5) })
+    } yield Ok(views.html.pokemon_detail(p, bs, stats))
   }
 
   /**

@@ -5,6 +5,9 @@
  */
 package pk
 
+// Using loggers
+import play.api.Logger
+
 import scala.concurrent.ExecutionContext
 import scala.util.{Failure, Random, Success}
 import scala.concurrent.Future
@@ -77,7 +80,8 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
    * @return the pokemon with that name
    */
   def getPokemonFromName(name: String): Future[Pokemon] = {
-    ws.url(named_pokemon_url(name)).get().map(r => r.json.as[Pokemon])
+    Logger.debug("getPokemonFromName PkAPI - name:" + name)
+    ws.url(named_pokemon_url(name)).get().map{r => r.json.as[Pokemon]}
   }
 
   /**
@@ -103,16 +107,15 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
       types match {
         case Nil => Future { List[String]() }
         case  ty :: tys =>
-          println("Type: " + ty.`type`.name) // printing on sbt for debug
+          Logger.debug("Type: " + ty.`type`.name)
           val pokemon_elements = getAllPokemonSameType(ty)
           for { // `for-yield` combinator for future lists
             pelts <- pokemon_elements
             other_guys <- aux(tys)
-          } yield ("New type " + ty.`type`.name) :: pelts.map(
-            pty => pty.pokemon.name) ++ other_guys
+          } yield pelts.map(pty => pty.pokemon.name) ++ other_guys
       }
     }
-    println("Pokemon Name: " + pkmon.name + "\n")
+    Logger.debug("Pokemon Name: " + pkmon.name + "\n")
     aux(pkmon.types)
   }
 
@@ -126,7 +129,7 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
       val name = pokemon_type.`type`.name
       val url = type_url(name)
 
-      println(url) // printing on sbt for debug
+      Logger.debug(url)
       ws.url(url).get.map(
         r => (r.json \ "pokemon").get.as[List[PokemonElement]])
   }
@@ -143,7 +146,7 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
       names match {
         case Nil => Future { List[List[(String, Int)]]() }
         case n :: ns => {
-          println("Getting stats for " + n)// printing on sbt for debug
+          Logger.debug("Getting stats for " + n)
           for { // `for-yield` combinator for future lists
             stats <- getStats(n)
             other_stats <- aux(ns)
@@ -163,13 +166,15 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
    * @return a list of pairs (stat_name, stat_level)
    */
   private def getStats(pk_name: String): Future[List[(String, Int)]] = {
-    getPokemonFromName(pk_name).map(// map each name to its stats list
+    Logger.debug("DEBUG getStats pPkAPI")
+    getPokemonFromName(pk_name).map{// map each name to its stats list
       pk =>
+        Logger.debug("Inside getStats pPkAPI")
         // map each `stat` to (st_name, st_level) and sort the result by st_name
         pk.stats.map(st => (st.stat.name, st.base_stat)).sortBy {
           case (s, _) => s
         }
-    )
+    }
   }
 
   /**

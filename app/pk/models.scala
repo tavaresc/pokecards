@@ -62,7 +62,7 @@ case class PokemonMove(
 
 /*
  * Sprite of a pokemon.
- * Some do not have all the fields: what to do then ?
+ * We use `Option` type since some pokemons do not have all the fields.
  * See https://pokeapi.co/docsv2/#moves
  * @param front_default the default depiction of a pokemon
  * @param front_shiny the depiction of a pokemon in a shy mood
