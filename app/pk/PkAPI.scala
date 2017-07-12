@@ -90,7 +90,34 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
   }
 
   /**
-   * Get all pokemons of an specific type from the pokeapi
+   * Find all "brothers" of a pokemon from the pokeapi.
+   * A brother is another pokemon with the same type.
+   * @param pkmon a pokemon instance
+   * @return all other pokemons having the same type
+   */
+  // Maybe it should be called a cousin ? Or a type_cousin ?
+  def findBrothers(pkmon: Pokemon): Future[List[String]] = {
+    // `aux` recursive auxiliar function to iterate on the list of PokemonType
+    // by pattern matching
+    def aux(types:List[PokemonType]): Future[List[String]] = {
+      types match {
+        case Nil => Future { List[String]() }
+        case  ty :: tys =>
+          println("Type: " + ty.`type`.name) // printing on sbt for debug
+          val pokemon_elements = getAllPokemonSameType(ty)
+          for { // `for-yield` combinator for future lists
+            pelts <- pokemon_elements
+            other_guys <- aux(tys)
+          } yield ("New type " + ty.`type`.name) :: pelts.map(
+            pty => pty.pokemon.name) ++ other_guys
+      }
+    }
+    println("Pokemon Name: " + pkmon.name + "\n")
+    aux(pkmon.types)
+  }
+
+  /**
+   * Get all pokemons of an specific type from the pokeapi.
    * @param pokemon_type a valid PokemonType
    * @return a list of pokemons with that type
    */
@@ -102,5 +129,90 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
       println(url) // printing on sbt for debug
       ws.url(url).get.map(
         r => (r.json \ "pokemon").get.as[List[PokemonElement]])
+  }
+
+  /**
+   * Get a list of stats for each pokemon name
+   * @param pk_names a list of pokemon names
+   * @result a (Future) list of stat list
+   */
+  //MOVE to Asynccontroller ?
+  def getFutureStats(pk_names: Future[List[String]]):
+    Future[List[(String, Int)]] = {
+    def aux(names: List[String]): Future[List[List[(String, Int)]]] = {
+      names match {
+        case Nil => Future { List[List[(String, Int)]]() }
+        case n :: ns => {
+          println("Getting stats for " + n)// printing on sbt for debug
+          for { // `for-yield` combinator for future lists
+            stats <- getStats(n)
+            other_stats <- aux(ns)
+          } yield stats :: other_stats
+        }
+      }
+    }
+    for {
+      pkn <- pk_names
+      stats <- aux(pkn)
+    } yield getAverageStats(stats)
+  }
+
+  /**
+   * Get a list of stats sorted by stat name from each pokemon name.
+   * @param pk_name a valid PokemonType
+   * @return a list of pairs (stat_name, stat_level)
+   */
+  private def getStats(pk_name: String): Future[List[(String, Int)]] = {
+    getPokemonFromName(pk_name).map(// map each name to its stats list
+      pk =>
+        // map each `stat` to (st_name, st_level) and sort the result by st_name
+        pk.stats.map(st => (st.stat.name, st.base_stat)).sortBy {
+          case (s, _) => s
+        }
+    )
+  }
+
+  /**
+   * Get the average of each stat in a list of stat list.
+   * It uses quite complex Scala combinators (foldLeft, zip)
+   * @param stat_list a list of a list of pairs (stat_name, stat_level)
+   * @return a list of pairs (stat_name, stat_avg)
+   */
+  private def getAverageStats(stat_list: List[List[(String, Int)]]):
+    List[(String, Int)] = {
+    stat_list match {
+      case Nil => List[(String, Int)]()
+      case sts :: _ => {
+         // create a new stat list element with accumulator setted to 0
+        val init = sts.map{ case (st_name, acc) => (st_name, 0) }
+        
+        /** Calculate the sum of each accumulator wrt the counter of previous stat
+          * list element (which is also a list), i.e. innermost way.
+          * We initialize the foldLeft with the new stat list element created
+          * above.
+          * (List(x1, ..., xn).foldLeft(z)(op) = (...(z op x1) op ... ) op xn
+          */
+        val acc_stats = stat_list.foldLeft(init) {
+          /** Create ordered pairs from each stat list element (which is also a
+            * list) using the `zip` function:
+            * List(x1, ..., xn) zip List(y1, ..., ym)
+            *   = List((x1, y1), ... (xn,yn))
+            * Then we map each pair to their sum.
+            */
+          (sts_sum, sts_left) => 
+            (sts_sum zip sts_left).map{
+              case ((st_name, st_acc1), (_, st_acc2)) =>
+                (st_name, st_acc1 + st_acc2)
+            }
+        }
+
+        val len = stat_list.length
+        // divide the sum of each accumulator by the list size to get average
+        val avg_stats = acc_stats.map{
+          case (st_name, st_acc) => (st_name, st_acc / len)
+        }
+        avg_stats
+      }
+    }
   }
 }

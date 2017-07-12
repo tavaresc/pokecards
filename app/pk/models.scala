@@ -1,8 +1,8 @@
 /**
  * This package is responsible for all that concerns the interaction with the
  * PokeAPI.
- * This file is to define the ADT -- Abstract Data Type -- (data model) for the resources
- * got from the Poke API version 2.
+ * This file is to define the ADT -- Abstract Data Type -- (data model) for the
+ * resources got from the Poke API version 2.
  */
 package pk
 
@@ -66,8 +66,22 @@ case class PokemonMove(
  * See https://pokeapi.co/docsv2/#moves
  * @param front_default the default depiction of a pokemon
  * @param front_shiny the depiction of a pokemon in a shy mood
+ * @param front_female the depiction of a female pokemon
+ * @param front_shiny_female the depiction of a female pokemon in a shy mood
+ * @param back_default the default depiction of a pokemon's back
+ * @param back_shiny the default depiction of a pokemon's back in a  shy mood
+ * @param back_female the depiction of a female pokemon's back
+ * @param back_shiny_female the depiction of female pokemon's back in shy mood
  */
-case class PokemonSprites(front_default: String, front_shiny: String)
+case class PokemonSprites( front_default: Option[String],
+                         front_shiny: Option[String],
+                         front_female: Option[String],
+                         front_shiny_female: Option[String],
+                         back_default: Option[String],
+                         back_shiny: Option[String],
+                         back_female: Option[String],
+                         back_shiny_female: Option[String]
+                         )
 
 /*
  * Type of a pokemon.
@@ -133,8 +147,15 @@ case class Pokemon(id: Int,
 
 /*
  * Simplified version of a pokemon element (for internal purposes).
- * @param slot the order of a pokemon
+ * @param slot a joker slot
  * @param pokemon the real pokemon
  */
-case class PokemonElement(slot:Int, pokemon: NamedAPIResource)
+case class PokemonElement(slot: Int, pokemon: NamedAPIResource)
+
+/*
+ * Average of a base stat (for internal purposes).
+ * @param counter a stat counter
+ * @param name the stat name
+ */
+case class StatElement(counter: Int, name: String)
 

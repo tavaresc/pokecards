@@ -44,35 +44,9 @@ class AsyncController @Inject() (actorSystem: ActorSystem, papi:pk.PkAPI)
     val p = papi.getPokemonFromId(id)
     p.map(pk =>
       // Ok("We're ready with %d pokemons".format(pkdx.length))
-      Ok(views.html.pokemon_detail(pk, List[String]()))
+      Ok(views.html.pokemon_detail(pk, List[String](), List[(String, Int)]()))
     )
     //getFutureMessage(1.second).map { msg => Ok(msg) }
-  }
-
-  /**
-  * Get all "brothers" of a pokemon.
-  * A brother is another pokemon with the same type.
-  * @param pkmon a pokemon instance
-  * @return all other pokemons having the same type
-  */
-  // Maybe it should be called a cousin ? Or a type_cousin ?
-  private def brothers(pkmon: Pokemon): Future[List[String]]= {
-    // `aux` recursive auxiliar function to iterate on the list of PokemonType
-    // by pattern matching
-    def aux(types:List[PokemonType]): Future[List[String]] = {
-      types match {
-        case Nil => Future { List[String]() }
-        case  ty :: tys =>
-          println("Type:" + ty.`type`.name) // printing on sbt for debug
-          val pokemon_elements = papi.getAllPokemonSameType(ty)
-          for { // `for-yield` combinator for future lists
-            pelts <- pokemon_elements
-            other_guys <- aux(tys)
-          } yield ("New type " + ty.`type`.name) :: pelts.map(
-              pty => pty.pokemon.name) ++ other_guys
-      }
-    }
-    aux(pkmon.types)
   }
 
   /**
@@ -84,8 +58,9 @@ class AsyncController @Inject() (actorSystem: ActorSystem, papi:pk.PkAPI)
     val pkmon = papi.getPokemonFromName(name)
     for { // `for-yield` combinator for future lists
       p <- pkmon
-      bs <- brothers(p)
-    } yield Ok(views.html.pokemon_detail(p, bs))
+      bs <- papi.findBrothers(p)
+      stats <- papi.getFutureStats(papi.findBrothers(p))
+    } yield Ok(views.html.pokemon_detail(p, bs, stats.take(5)))
   }
 
   /**

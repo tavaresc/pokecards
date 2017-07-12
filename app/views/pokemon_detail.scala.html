@@ -1,11 +1,17 @@
-@(pokemon: pk.Pokemon, brothers: List[String])
+@(pokemon: pk.Pokemon, brothers: List[String], stats: List[(String, Int)])
 
 @main("@(pokemon.name) (@(pokemon.id)"){
 @(pokemon.height)
 @(pokemon.weight)
 @(pokemon.base_experience)
 
-<h3>Same type</h3>
+<h3>Stats (5 first brothers) </h3>
+<ul>
+@for((s, n) <- stats) {
+    <li>@s : @n</li>
+    }
+</ul>
+<h3>Same type: brothers</h3>
 <ul>
 @for(b <- brothers) {
     <li>@b</li>
@@ -36,6 +42,5 @@
 <h2>Sprites</h2>
 <ul>
     <li><img src="@(pokemon.sprites.front_default)" alt=""/></li>
-    <li><img src="@(pokemon.sprites.front_shiny)" alt=""/></li>
 </ul>
 }
