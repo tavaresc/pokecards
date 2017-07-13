@@ -1,4 +1,4 @@
-@(pokemon: pk.Pokemon, brothers: List[String], stats: List[(String, Int)])
+@(pokemon: pk.Pokemon, brothers: List[(String, List[String])], stats: List[pk.AverageTypeStats])
 
 @main("@(pokemon.name) (@(pokemon.id)"){
 @(pokemon.height)
@@ -7,9 +7,14 @@
 
 <h3>Stats (5 first brothers) </h3>
 <ul>
-@for((s, n) <- stats) {
-    <li>@s : @n</li>
-    }
+  @for(ty_sts <- stats) {
+    <li>@ty_sts.name</li>
+      <ul>
+        @for(st <- ty_sts.stats) {
+          <li>@st.name : @st.avg</li>
+        }
+      </ul>
+  }
 </ul>
 <h3>Same type: brothers</h3>
 <ul>

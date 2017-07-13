@@ -154,8 +154,15 @@ case class PokemonElement(slot: Int, pokemon: NamedAPIResource)
 
 /*
  * Average of a base stat (for internal purposes).
- * @param counter a stat counter
  * @param name the stat name
+ * @param avg stat counter/average
  */
-case class StatElement(counter: Int, name: String)
+case class StatElement(name: String, avg: Int)
+
+/*
+ * Average of stats of each type of pokemon (for internal purposes).
+ * @param name the stat name
+ * @param stats a list of stats
+ */
+case class AverageTypeStats(name: String, stats: List[StatElement])
 

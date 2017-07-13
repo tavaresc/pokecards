@@ -94,28 +94,31 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
   }
 
   /**
-   * Find all "brothers" of a pokemon from the pokeapi.
+   * Find the types of a pokemon and collect all its "brothers" from the pokeapi.
    * A brother is another pokemon with the same type.
    * @param pkmon a pokemon instance
-   * @return all other pokemons having the same type
+   * @return a list of pairs (type, brothers) for each pokemon type
    */
   // Maybe it should be called a cousin ? Or a type_cousin ?
-  def findBrothers(pkmon: Pokemon): Future[List[String]] = {
-    // `aux` recursive auxiliar function to iterate on the list of PokemonType
-    // by pattern matching
-    def aux(types:List[PokemonType]): Future[List[String]] = {
+  def findBrothers(pkmon: Pokemon):
+    Future[List[(String, List[String])]] = {
+    // `aux` recursive auxiliary function to iterate on a list of PokemonType
+    // by pattern matching and collect a list of pairs (type, brothers)
+    def aux(types:List[PokemonType]):
+      Future[List[(String, List[String])]] = {
       types match {
-        case Nil => Future { List[String]() }
+        case Nil => Future { List[(String, List[String])]() }
         case  ty :: tys =>
-          Logger.debug("Type: " + ty.`type`.name)
+          val typename = ty.`type`.name
+          Logger.debug("Type: " + typename)
           val pokemon_elements = getAllPokemonSameType(ty)
           for { // `for-yield` combinator for future lists
             pelts <- pokemon_elements
             other_guys <- aux(tys)
-          } yield pelts.map(pty => pty.pokemon.name) ++ other_guys
+          } yield (typename, pelts.map(pty => pty.pokemon.name)) :: other_guys
       }
     }
-    Logger.debug("Pokemon Name: " + pkmon.name + "\n")
+    //Logger.debug("Pokemon Name: " + pkmon.name + "\n")
     aux(pkmon.types)
   }
 
@@ -126,27 +129,29 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
    */
   def getAllPokemonSameType(pokemon_type: PokemonType):
     Future[List[PokemonElement]] = {
-      val name = pokemon_type.`type`.name
-      val url = type_url(name)
+    val name = pokemon_type.`type`.name
+    val url = type_url(name)
 
-      Logger.debug(url)
-      ws.url(url).get.map(
-        r => (r.json \ "pokemon").get.as[List[PokemonElement]])
+    //Logger.debug(url)
+    ws.url(url).get.map(
+      r => (r.json \ "pokemon").get.as[List[PokemonElement]])
   }
 
   /**
-   * Get a list of stats for each pokemon name
-   * @param pk_names a list of pokemon names
-   * @result a (Future) list of stat list
+   * Get a list of average stats for each pokemon type
+   * @param pk_type_brothers a list of pairs (type, brothers)
+   * @result a (Future) a list of pairs (type, avg_stats)
    */
   //MOVE to Asynccontroller ?
-  def getFutureStats(pk_names: Future[List[String]]):
-    Future[List[(String, Int)]] = {
+  def getFutureStats(pk_type_brothers: Future[List[(String, List[String])]]):
+    Future[List[AverageTypeStats]] = {
+    // `aux` recursive auxiliary function to iterate on a list of brothers'
+    // name and collect its stats average
     def aux(names: List[String]): Future[List[List[(String, Int)]]] = {
       names match {
         case Nil => Future { List[List[(String, Int)]]() }
         case n :: ns => {
-          Logger.debug("Getting stats for " + n)
+          //Logger.debug("Getting stats for " + n)
           for { // `for-yield` combinator for future lists
             stats <- getStats(n)
             other_stats <- aux(ns)
@@ -154,10 +159,27 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
         }
       }
     }
+
+    // `loop` recursive auxiliary function to iterate on a list of (type,
+    // brothers) and collect the average of brothers' stats
+    def loop(classes: List[(String, List[String])]): 
+      Future[List[AverageTypeStats]] = {
+      classes match {
+        case Nil => Future { List[AverageTypeStats]() }
+        case (type_name, brothers_name) :: cls => {
+          for {
+            brothers_stats <- aux(brothers_name)
+            other_classes <- loop(cls)
+          } yield AverageTypeStats(type_name, getAverageStats(brothers_stats)) :: other_classes
+        }
+      }
+    }
+
+
     for {
-      pkn <- pk_names
-      stats <- aux(pkn)
-    } yield getAverageStats(stats)
+      classes <- pk_type_brothers
+      avg_stats <- loop(classes)
+    } yield avg_stats
   }
 
   /**
@@ -166,10 +188,10 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
    * @return a list of pairs (stat_name, stat_level)
    */
   private def getStats(pk_name: String): Future[List[(String, Int)]] = {
-    Logger.debug("DEBUG getStats pPkAPI")
+    //Logger.debug("DEBUG getStats pPkAPI")
     getPokemonFromName(pk_name).map{// map each name to its stats list
       pk =>
-        Logger.debug("Inside getStats pPkAPI")
+        //Logger.debug("Inside getStats pPkAPI")
         // map each `stat` to (st_name, st_level) and sort the result by st_name
         pk.stats.map(st => (st.stat.name, st.base_stat)).sortBy {
           case (s, _) => s
@@ -184,12 +206,12 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
    * @return a list of pairs (stat_name, stat_avg)
    */
   private def getAverageStats(stat_list: List[List[(String, Int)]]):
-    List[(String, Int)] = {
+    List[StatElement] = {
     stat_list match {
-      case Nil => List[(String, Int)]()
+      case Nil => List[StatElement]()
       case sts :: _ => {
          // create a new stat list element with accumulator setted to 0
-        val init = sts.map{ case (st_name, acc) => (st_name, 0) }
+        val init = sts.map{ case (st_name, acc) => StatElement(st_name, 0) }
         
         /** Calculate the sum of each accumulator wrt the counter of previous stat
           * list element (which is also a list), i.e. innermost way.
@@ -206,15 +228,15 @@ class PkAPI @Inject() (ws:WSClient)(implicit exec: ExecutionContext) {
             */
           (sts_sum, sts_left) => 
             (sts_sum zip sts_left).map{
-              case ((st_name, st_acc1), (_, st_acc2)) =>
-                (st_name, st_acc1 + st_acc2)
+              case (StatElement(st_name, st_acc1), (_, st_acc2)) =>
+                StatElement(st_name, st_acc1 + st_acc2)
             }
         }
 
         val len = stat_list.length
         // divide the sum of each accumulator by the list size to get average
         val avg_stats = acc_stats.map{
-          case (st_name, st_acc) => (st_name, st_acc / len)
+          case StatElement(st_name, st_acc) => StatElement(st_name, st_acc / len)
         }
         avg_stats
       }

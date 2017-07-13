@@ -47,7 +47,7 @@ class AsyncController @Inject() (actorSystem: ActorSystem, papi:pk.PkAPI)
     val p = papi.getPokemonFromId(id)
     p.map(pk =>
       // Ok("We're ready with %d pokemons".format(pkdx.length))
-      Ok(views.html.pokemon_detail(pk, List[String](), List[(String, Int)]()))
+      Ok(views.html.pokemon_detail(pk, List[(String, List[String])](), List[AverageTypeStats]()))
     )
     //getFutureMessage(1.second).map { msg => Ok(msg) }
   }
@@ -64,7 +64,11 @@ class AsyncController @Inject() (actorSystem: ActorSystem, papi:pk.PkAPI)
     for { // `for-yield` combinator for future lists
       p <- pkmon
       bs <- papi.findBrothers(p)
-      stats <- papi.getFutureStats(Future{ bs.take(5) })
+      stats <- papi.getFutureStats(
+        Future{ bs.map{
+          case (type_name, pk_type_brothers) =>
+            (type_name, pk_type_brothers.take(5))
+        }})
     } yield Ok(views.html.pokemon_detail(p, bs, stats))
   }
 
