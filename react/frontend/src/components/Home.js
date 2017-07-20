@@ -1,11 +1,19 @@
 /**
  * Created by claudia on 20/07/17.
+ * Home builds the structure of the initial homepage.
  */
 import React from 'react';
+import Header from './Header';
+import Main from './Main';
+import About from './About';
+import Footer from './Footer';
 
 const Home = () => (
     <div>
-        <h1>Welcome to the Tornadoes Website!</h1>
+        <Header />
+        <Main />
+        <About />
+        <Footer />
     </div>
 );
 
