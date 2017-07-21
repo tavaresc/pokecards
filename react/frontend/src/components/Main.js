@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import Portfolio from './Portfolio';
 
 const Main = () => (
     <section id="portfolio">
@@ -16,107 +17,8 @@ const Main = () => (
             </div>
 
             {/* Grid portfolio */}
-            <div className="row" text-center>
-                <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item">
-                    <a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">
-                        <div className="caption">
-                            <div className="caption-content">
-                                <i className="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <div className="sprite">
-                            <div className="circle">
-                                <img src="%PUBLIC_URL%/img/poke39.png" className="img-responsive" alt="Pokemon"/>
-                            </div>
-                        </div>
-                    </a>
-                    <div className="name"><h3>Name</h3></div>
-                    <div className="todo"><a href="#">Like   Dislike</a></div>
-                </div>
-                <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item">
-                    <a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">
-                        <div className="caption">
-                            <div className="caption-content">
-                                <i className="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <div className="sprite">
-                            <div className="circle">
-                                <img src="%PUBLIC_URL%/img/poke39.png" className="img-responsive" alt="Pokemon"/>
-                            </div>
-                        </div>
-                    </a>
-                    <div className="name"><h3>Name</h3></div>
-                    <div className="todo"><a href="#">Like   Dislike</a></div>
-                </div>
-                <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item">
-                    <a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">
-                        <div className="caption">
-                            <div className="caption-content">
-                                <i className="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <div className="sprite">
-                            <div className="circle" id="pokemon">
-                                <img src="%PUBLIC_URL%/img/poke39.png" class="img-responsive" alt="Pokemon"/>
-                            </div>
-                        </div>
-                    </a>
-                    <div className="name"><h3>Name</h3></div>
-                    <div className="todo"><a href="#">Like   Dislike</a></div>
-                </div>
-                <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item">
-                    <a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">
-                        <div className="caption">
-                            <div className="caption-content">
-                                <i className="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <div className="sprite">
-                            <div className="circle">
-                                <img src="%PUBLIC_URL%/img/poke39.png" className="img-responsive" alt="Pokemon"/>
-                            </div>
-                        </div>
-                    </a>
-                    <div className="name"><h3>Name</h3></div>
-                    <div className="todo"><a href="#">Like   Dislike</a></div>
-                </div>
-                <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item">
-                    <a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">
-                        <div className="caption">
-                            <div className="caption-content">
-                                <i className="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <div className="sprite">
-                            <div className="circle">
-                                <img src="%PUBLIC_URL%/img/poke39.png" className="img-responsive" alt="Pokemon"/>
-                            </div>
-                        </div>
-                    </a>
-                    <div className="name"><h3>Name</h3></div>
-                    <div className="todo"><a href="#">Like   Dislike</a></div>
-                </div>
-                <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item">
-                    <a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">
-                        <div className="caption">
-                            <div className="caption-content">
-                                <i className="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <div className="sprite">
-                            <div className="circle">
-                                <img src="%PUBLIC_URL%/img/poke39.png" className="img-responsive" alt="Pokemon"/>
-                            </div>
-                        </div>
-                    </a>
-                    <div className="name">
-                        <h3>Name</h3>
-                    </div>
-                    <div className="todo">
-                        <a href="#">Like   Dislike</a>
-                    </div>
-                </div>
+            <div className="row">
+                <Portfolio />
             </div>
         </div>
     </section>

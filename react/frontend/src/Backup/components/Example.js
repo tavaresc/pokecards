@@ -14,10 +14,12 @@ class App extends Component {
     componentDidMount() {
         // Is there a React-y way to avoid rebinding `this`? fat arrow?
         var axios = require('axios');
+        var pk_url = "http://pokeapi.co/api/v2/pokemon/";
+
 
         var th = this;
         this.serverRequest =
-            axios.get(this.props.source)
+            axios.get(pk_url)
                 .then(function(result) {
                     th.setState({
                         pokemons: result.data.results,
@@ -38,6 +40,7 @@ class App extends Component {
     render() {
         //new Test();
         console.log(this.state.pokemons);
+        console.log(this.state.sprites);
         //this.state.pokemons;
         var path = this.state.pokemons[0].url;
         console.log(path);
