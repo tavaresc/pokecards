@@ -4,8 +4,7 @@
  */
 
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 class Portfolio extends Component {
     constructor() {
@@ -36,9 +35,13 @@ class Portfolio extends Component {
                 });
     }
 
+    /* This method throws an Error when a link is called. It is then necessary to click twice to go the the linked page.
+     * The error message: `Uncaught TypeError: this.serverRequest.abort is not a function`
+     */
+    /*
     componentWillUnmount() {
         this.serverRequest.abort();
-    }
+    } */
 
     render() {
         console.log(this.state.pokemons);
@@ -46,25 +49,25 @@ class Portfolio extends Component {
 
         return (
             <div>
-            {this.state.pokemons.map(pk => (
-                <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item" key={pk.name}>
-                    <a href="#portfolioModal1" className="portfolio-link" data-toggle="modal">
-                        <div className="caption">
-                            <div className="caption-content">
-                                <i className="fa fa-search-plus fa-3x"></i>
+                {this.state.pokemons.map(pk => (
+                    <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item" key={pk.name}>
+                        <Link to='/pokecard' className="portfolio-link">
+                            <div className="caption">
+                                <div className="caption-content">
+                                    <i className="fa fa-search-plus fa-3x"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div className="sprite">
-                            <div className="circle">
-                                <img src={this.state.sprites[this.state.pokemons.indexOf(pk)]} className="img-responsive"
-                                     alt={pk.name + " picture"}/>
+                            <div className="sprite">
+                                <div className="circle">
+                                    <img src={this.state.sprites[this.state.pokemons.indexOf(pk)]} className="img-responsive"
+                                         alt={pk.name + " picture"}/>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <div className="name"><h3>{pk.name}</h3></div>
-                    <div className="todo"><a href="#">Like   Dislike</a></div>
-                </div>
-            ))}
+                        </Link>
+                        <div className="name"><h3>{pk.name}</h3></div>
+                        <div className="todo"><a href="#">Like   Dislike</a></div>
+                    </div>
+                ))}
             </div>
         );
     }

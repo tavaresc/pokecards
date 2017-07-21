@@ -16,43 +16,16 @@ import './../../freelancer-theme/vendor/font-awesome/css/font-awesome.min.css';
 import './../../freelancer-theme/css/freelancer.css';
 
 import Home from './Home';
-import About from './About';
+import Pokecard from './Pokecard';
+
 
 const App = () => (
     <Router>
         <div>
-            {/* Navigation */}
-            <nav id="mainNav" className="navbar navbar-default navbar-fixed-top navbar-custom">
-                <div className="container">
-                    {/* Brand and toggle get grouped for better mobile display */}
-                    <div className="navbar-header page-scroll">
-                        <button type="button" className="navbar-toggle" data-toggle="collapse"
-                                data-target="#bs-example-navbar-collapse-1">
-                            <span className="sr-only">Toggle navigation</span> Menu <i className="fa fa-bars"></i>
-                        </button>
-                        <Link className="navbar-brand" to='/'>Pokecards</Link>
-                    </div>
-
-                    {/* Collect the nav links, forms, and other content for toggling */}
-                    <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul className="nav navbar-nav navbar-right">
-                            <li className="page-scroll">
-                                <Link to='/'>Portfolio</Link>
-                            </li>
-                            <li className="page-scroll">
-                                <Link to='/about'>About</Link>
-                            </li>
-
-                            <li className="page-scroll todo">Search bar</li>
-                        </ul>
-                    </div>
-                    {/* end of navbar-collapse */}
-                </div>
-                {/* end of container-fluid */}
-            </nav>
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route path='/about' component={About}/>
+                <Route path='/pokecard' component={Pokecard}/>
+
             </Switch>
         </div>
     </Router>

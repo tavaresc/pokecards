@@ -4,12 +4,14 @@
  */
 import React from 'react';
 import Header from './Header';
+import Navbar from './Navbar';
 import Main from './Main';
 import About from './About';
 import Footer from './Footer';
 
 const Home = () => (
     <div>
+        <Navbar />
         <Header />
         <Main />
         <About />
