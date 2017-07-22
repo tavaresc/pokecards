@@ -1,101 +1,10 @@
 /**
  * Created by claudia on 21/07/17.
- * Portfolio display each pokemon item of the portfolio on the initial page.
+ * Portfolio calls the PokeAPI and instantiates a list of pokemons. They are all displayed on the initial page.
  */
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
-class Pokemon extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            sprite: "",
-            types: [{url: "", name: ""}],
-        };
-    }
-
-    componentDidMount() {
-        var axios = require('axios');
-
-        this.serverRequest = axios.get(this.props.pokemon.url)
-            .then(result => {
-                console.log("Server: " + result.data.types.map(ty => ty.type));
-                this.setState({
-                    types: result.data.types.map(ty => ty.type),
-                    // NOT sure it works
-                    sprite: result.data.sprites.front_default,
-                });
-            });
-    }
-
-    getStyle(ty) {
-        // `sprite` is the default CSS class for a sprite
-        var color = "sprite ";
-
-        if (ty !== undefined) {
-            if (ty.length === 2) // a pokemon can have at most 2 types
-                /* we have created 18x18 css class name for each combination of types named `type1-type2` */
-                color += (ty[0].name < ty[1].name)? (ty[0].name + "-" + ty[1].name): (ty[1].name + "-" + ty[0].name);
-            else // ty.length === 1
-                color += ty[0].name;
-        }
-        return color;
-    }
-
-    renderSprite() {
-        return (
-            <div className="circle">
-                <img src={this.state.sprite} className="img-responsive"
-                     alt={this.props.pokemon.name + " picture"}/>
-            </div>
-        );
-    }
-
-    render() {
-        console.log("Pokemon - sprite: " + this.state.sprite);
-        console.log("Pokemon - types: " + this.state.types);
-        return (
-            <div className={this.getStyle(this.state.types)}>
-                {this.renderSprite()}
-            </div>
-        )
-    }
-};
-
-class PokemonList extends Component {
-    /* Warning: useless
-    constructor(props) {
-        super(props);
-    }
-    */
-
-   renderPortfolio(pk) {
-        return (
-            <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item" key={pk.name}>
-                <Link to='/pokecard' className="portfolio-link">
-                    <div className="caption">
-                        <div className="caption-content">
-                            <i className="fa fa-search-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <Pokemon key={pk.name} pokemon={pk} />
-                </Link>
-                <div className="name"><h3>{pk.name}</h3></div>
-                <div className="todo"><a href="#">Like   Dislike</a></div>
-            </div>
-        );
-    }
-
-    render() {
-        return (
-            <div>
-                {this.props.pokemons.map(pk => this.renderPortfolio(pk))}
-            </div>
-        )
-    }
-};
+import PokemonList from './../utils/PokemonList';
 
 class Portfolio extends Component {
     constructor() {
