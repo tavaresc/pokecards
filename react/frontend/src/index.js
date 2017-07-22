@@ -7,6 +7,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './../node_modules/jquery/dist/jquery.min.js';
+import './../node_modules/font-awesome/css/font-awesome.min.css';
+import './styles/css/freelancer.css';
+import './styles/css/colors.css';
+
 import App from './components/App';
 
 ReactDOM.render(
