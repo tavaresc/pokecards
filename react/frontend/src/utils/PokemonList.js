@@ -17,9 +17,12 @@ class PokemonList extends Component {
      */
 
     renderPortfolio(pk) {
+        console.log("PokemonList- props name: " + pk.name);
+        console.log("PokemonList- props url: " + pk.url);
+
         return (
             <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item" key={pk.name}>
-                <Link to='/pokecard' className="portfolio-link">
+                <Link to={`/${pk.name}`} className="portfolio-link">
                     <div className="caption">
                         <div className="caption-content">
                             <i className="fa fa-search-plus fa-3x"></i>

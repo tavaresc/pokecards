@@ -11,7 +11,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Home from './Home';
-import Pokecard from './Pokecard';
+import Pokepage from './Pokepage';
 
 
 const App = () => (
@@ -19,8 +19,7 @@ const App = () => (
         <div>
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route path='/pokecard' component={Pokecard}/>
-
+                <Route path='/:name' component={Pokepage}/>
             </Switch>
         </div>
     </Router>

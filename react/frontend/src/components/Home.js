@@ -5,7 +5,7 @@
 import React from 'react';
 import Header from './Header';
 import Navbar from './Navbar';
-import Main from './Main';
+import Portfolio from './Portfolio';
 import About from './About';
 import Footer from './Footer';
 
@@ -13,7 +13,7 @@ const Home = () => (
     <div>
         <Navbar />
         <Header />
-        <Main />
+        <Portfolio />
         <About />
         <Footer />
     </div>

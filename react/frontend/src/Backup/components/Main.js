@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom'
 
 import About  from './About';
-import Pokecard from '../../components/Pokecard';
+import Pokecard from '../../components/Pokepage';
 
 
 const Home = () => (

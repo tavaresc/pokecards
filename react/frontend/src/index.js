@@ -12,6 +12,8 @@ import './../node_modules/jquery/dist/jquery.min.js';
 import './../node_modules/font-awesome/css/font-awesome.min.css';
 import './styles/css/freelancer.css';
 import './styles/css/colors.css';
+import './styles/css/pokecards.css';
+
 
 import App from './components/App';
 

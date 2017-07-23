@@ -20,16 +20,19 @@ class Pokemon extends Component {
     componentDidMount() {
         var axios = require('axios');
 
+        console.log("In Pokemon mount: " + this.props.pokemon.url);
         this.serverRequest = axios.get(this.props.pokemon.url)
             .then(result => {
-                console.log("Server: " + result.data.types.map(ty => ty.type));
                 this.setState({
                     types: result.data.types.map(ty => ty.type),
                     // NOT sure it works
                     sprite: result.data.sprites.front_default,
                 });
-            });
+            })
+            .catch(function(err){ console.log("Error found in Pokemon: " + err)});
     }
+
+    componentWillUnmount() {}
 
     getStyle(ty) {
         // `sprite` is the default CSS class for a sprite
@@ -46,9 +49,11 @@ class Pokemon extends Component {
     }
 
     renderSprite() {
+        // some pokemons do not have sprites
+        var pk_sprite = (!(this.state.sprite))? ("./img/pokeball.png") : (this.state.sprite);
         return (
             <div className="circle">
-                <img src={this.state.sprite} className="img-responsive"
+                <img src={pk_sprite} className="img-responsive"
                      alt={this.props.pokemon.name + " picture"}/>
             </div>
         );
@@ -57,6 +62,7 @@ class Pokemon extends Component {
     render() {
         console.log("Pokemon - sprite: " + this.state.sprite);
         console.log("Pokemon - types: " + this.state.types);
+
         return (
             <div className={this.getStyle(this.state.types)}>
                 {this.renderSprite()}
