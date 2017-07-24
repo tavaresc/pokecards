@@ -33,8 +33,15 @@ class Pokecard extends Component {
         super(props);
 
         this.state = {
+            // model - sprite: "",
             sprite: "",
+            // model types: [{url: "", name: ""}],
             types: [{url: "", name: ""}],
+            //model stats: {"hp": -1, "attack": -1, "defense": -1, "speed": -1, "special-attack": -1, "special-defense": -1},
+            stats: {},
+            // model avg_stats: [{ty_name: "", hp: -1, atk: -1, def: -1, spd: -1, s_atk: -1, s_def: -1}],
+            avg_stats: [{ty_name: "", hp: -1, atk: -1, def: -1, spd: -1, s_atk: -1, s_def: -1}],
+
         };
     }
 
@@ -44,35 +51,49 @@ class Pokecard extends Component {
         console.log("In Pokecard mount: " + this.props.pokemon.url);
         this.serverRequest = axios.get(this.props.pokemon.url)
             .then(result => {
-                console.log("Server: " + result.data.types.map(ty => ty.type));
+
+                var sts = {};
+                result.data.stats.map(st => (sts[st.stat.name] = st.base_stat));
+                //console.log("Server: " + sts);
+
+                var tys = [];
+                tys = result.data.types.map(ty => ty.type);
+
+                var avg_sts = tys.map(ty => (
+                    {ty_name: ty.name, hp: 10, atk: 20, def: 30, spd: 40, s_atk: 50, s_def: 60}
+                ));
+
                 this.setState({
-                    types: result.data.types.map(ty => ty.type),
-                    // NOT sure it works
+                    types: tys,
                     sprite: result.data.sprites.front_default,
+                    stats: sts,
+                    avg_stats: avg_sts,
                 });
+
+                console.log("In Pokecard - avg_stats: " + this.state.avg_stats);
             })
             .catch(function(err){ console.log("Error found in Pokecard: " + err)});
     }
 
-    getStyle(ty) {
+    getStyle(tys) {
         // `sprite` is the default CSS class for a sprite
         var color = "sprite ";
 
-        if (ty !== undefined) {
-            if (ty.length === 2) // a pokemon can have at most 2 types
+        if (tys !== undefined) {
+            if (tys.length === 2) // a pokemon can have at most 2 types
             /* we have created 18x18 css class name for each combination of types named `type1-type2` */
-                color += (ty[0].name < ty[1].name)? (ty[0].name + "-" + ty[1].name): (ty[1].name + "-" + ty[0].name);
+                color += (tys[0].name < tys[1].name)? (tys[0].name + "-" + tys[1].name): (tys[1].name + "-" + tys[0].name);
             else // ty.length === 1
-                color += ty[0].name;
+                color += tys[0].name;
         }
         return color;
     }
 
     renderIcons(ty_name) {
         var iconClass = "fa fa-" + iconMapping[ty_name];
-        var spanClass = "btn btn-circle text-white " + ty_name;
+        var spanClass = "btn btn-circle " + ty_name;
         return (
-            <li>
+            <li key={ty_name}>
                 <span title={ty_name} className={spanClass}><i className={iconClass}></i></span>
             </li>
         );
@@ -89,18 +110,52 @@ class Pokecard extends Component {
         );
     }
 
+    renderStats(pk_name) {
+        // it avoids undefined states not yet set
+        if (this.state.stats !== undefined && this.state.avg_stats !== undefined) {
+            console.log("In renderStats: " + this.state.stats["attack"]);
+
+            return (
+                <div key={pk_name} className="name">
+                    <h3>Attack: {this.state.stats["attack"]}
+                        {this.state.avg_stats.map(ty_avg =>
+                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.atk}</span>)}
+                    </h3>
+                    <h3>Defense: {this.state.stats["defense"]}
+                        {this.state.avg_stats.map(ty_avg =>
+                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.def}</span>)}
+                    </h3>
+                    <h3>Speed: {this.state.stats["speed"]}
+                        {this.state.avg_stats.map(ty_avg =>
+                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.spd}</span>)}
+                    </h3>
+                    <h3>Sp Attak: {this.state.stats["special-attack"]}
+                        {this.state.avg_stats.map(ty_avg =>
+                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.s_atk}</span>)}
+                    </h3>
+                    <h3>Sp Defense: {this.state.stats["special-defense"]}
+                        {this.state.avg_stats.map(ty_avg =>
+                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.s_def}</span>)}
+                    </h3>
+                </div>
+            );
+        }
+        return ;
+    }
+
     renderCard() {
+        // console.log("In renderCard: " + this.props.pokemon);
         // it avoids undefined props lost in the context
         if (this.props.pokemon.name !== undefined) {
             return (
                 <div className="card">
 
-                    <div className="row">
-                        <div className="col-xs-9">
-                            <h3>{this.props.pokemon.name}</h3>
+                    <div className="row-fluid">
+                        <div className="col-xs-2 hp">
+                            <h2>{this.state.stats["hp"]}</h2>
                         </div>
-                        <div className="col-xs-3 text-right">
-                            <h2>HP</h2>
+                        <div className="col-xs-10">
+                            <h3>{this.props.pokemon.name}</h3>
                         </div>
                     </div>
 
@@ -118,15 +173,16 @@ class Pokecard extends Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <div className="todo"><a href="#">Like Dislike</a></div>
-                            <div className="name"><h3>Stat 1</h3></div>
-                            <div className="name"><h3>Stat 2</h3></div>
+                            <div>
+                                {this.renderStats(this.props.pokemon.name)}
+                            </div>
                         </div>
                     </div>
 
                 </div>
             );
         }
-        return ;
+        return(<div></div>);
     }
 
     render() {
@@ -137,7 +193,8 @@ class Pokecard extends Component {
             <div>
                 {this.renderCard()}
             </div>
-        )
+        );
     }
 };
+
 export default Pokecard;

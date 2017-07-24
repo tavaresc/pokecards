@@ -22,11 +22,11 @@ class Pokepage extends React.Component {
         return (
             <section id="pokecard">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-xs-12 col-sm-6 col-sm-offset-2 pokecard-item border-gray">
+                    <div className="row justify-content-center align-items-center">
+                        <div className="col-xs-12 col-sm-7 pokecard-item border-gray">
                             <Pokecard pokemon={pk}/>
                         </div>
-                        <div className="col-xs-12 col-sm-4 pokecard-item">
+                        <div className="col-xs-12 col-sm-5 pokecard-item">
                             <img className="img-responsive" src="./img/timeline-twitter.png"
                                 alt="Printscreen of Twitter timeline"/>
                         </div>
