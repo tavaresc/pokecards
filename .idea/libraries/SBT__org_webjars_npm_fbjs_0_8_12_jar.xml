@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.webjars.npm:fbjs:0.8.12:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/fbjs/jars/fbjs-0.8.12.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/fbjs/srcs/fbjs-0.8.12-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

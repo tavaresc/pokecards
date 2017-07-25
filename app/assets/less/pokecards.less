@@ -1,0 +1,94 @@
+.border-gray {
+  border: solid lightgray 1px;
+  border-radius: 3px;
+}
+
+.no-padding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.text-white {
+  color: white;
+}
+
+#pokecard {
+  .pokecard-item {
+    margin: 0 0 15px;
+    right: 0;
+    box-sizing: border-box;
+    padding-top: 10px;
+    .card {
+      display: block;
+      position: relative;
+      margin: 0 auto;
+      i {
+        margin-top: -50px;
+        //background: red; pokemon type color
+      }
+      h2 {
+        font-size: 25px;
+      }
+      h3 {
+        font-size: 14px;
+        margin: 10px 0;
+      }
+      .hp {
+        background-color: darkgray;
+        color: white;
+        text-align: center;
+        margin-top: -10px;
+        padding: 13px 5px 10px 5px;
+      }
+      .btn-circle {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        padding: 4px 8px;
+        font-size: 20px;
+        border: 1px solid darkgray;
+        box-shadow: 0 3px 2px lightgray;
+        margin: -20px 5px 0px 0px;
+      }
+      .sprite {
+        width: 100%;
+        text-align: center;
+        .circle {
+          display: inline-block;
+          background-color: white;
+          border-radius: 50%;
+          margin: 20% 25%; // these margins set the size of each pokecard-item
+        }
+      }
+      .name, .todo {
+        text-align: left;
+      }
+    }
+  }
+  * {
+    z-index: 2;
+  }
+}
+
+@media(min-width:767px) {
+  #pokecard {
+    .pokecard-item {
+      margin: 0 0 30px;
+      .card.sprite {
+        min-height: 300px;
+      }
+    }
+  }
+}
+
+@media(max-width: 767px) {
+  #pokecard {
+    .pokecard-item {
+      .card {
+        max-height: 200px;
+        min-height: 50px;
+      }
+    }
+  }
+}

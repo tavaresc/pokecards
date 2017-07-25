@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.webjars.npm:resolve-pathname:2.0.2:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/resolve-pathname/jars/resolve-pathname-2.0.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/resolve-pathname/srcs/resolve-pathname-2.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

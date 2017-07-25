@@ -1,0 +1,513 @@
+.normal {
+  background: #a8a878;
+}
+.fighting {
+  background: #c03028;
+}
+.flying {
+  background: #a890f0;
+}
+.poison {
+  background: #a040a0;
+}
+.ground {
+  background: #e0c068;
+}
+.rock {
+  background: #b8a038;
+}
+.bug {
+  background: #a8b820;
+}
+.ghost {
+  background: #705898;
+}
+.steel {
+  background: #b8b8d0;
+}
+.fire {
+  background: #f08030;
+}
+.water {
+  background: #6890f0;
+}
+.grass {
+  background: #78c850;
+}
+.electric {
+  background: #f8d030;
+}
+.psychic {
+  background: #f85888;
+}
+.ice {
+  background: #98d8d8;
+}
+.dragon {
+  background: #7038f8;
+}
+.dark {
+  background: #705848;
+}
+.fairy {
+  background: #ee99ac;
+}
+.normal-poison {
+  background: #ffffff linear-gradient(90deg, #a8a878 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.normal-rock {
+  background: #ffffff linear-gradient(90deg, #a8a878 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.normal-steel {
+  background: #ffffff linear-gradient(90deg, #a8a878 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.normal-water {
+  background: #ffffff linear-gradient(90deg, #a8a878 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.normal-psychic {
+  background: #ffffff linear-gradient(90deg, #a8a878 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.fighting-normal {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.fighting-flying {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #a890f0 50%) repeat scroll 0% 0%;
+}
+.fighting-poison {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.fighting-ground {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.fighting-rock {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.fighting-ghost {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #705898 50%) repeat scroll 0% 0%;
+}
+.fighting-steel {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.fighting-fire {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #f08030 50%) repeat scroll 0% 0%;
+}
+.fighting-water {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.fighting-grass {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.fighting-psychic {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.fighting-ice {
+  background: #ffffff linear-gradient(90deg, #c03028 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.flying-normal {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.flying-poison {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.flying-ground {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.flying-rock {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.flying-ghost {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #705898 50%) repeat scroll 0% 0%;
+}
+.flying-steel {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.flying-water {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.flying-grass {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.flying-psychic {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.flying-ice {
+  background: #ffffff linear-gradient(90deg, #a890f0 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.poison-rock {
+  background: #ffffff linear-gradient(90deg, #a040a0 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.poison-steel {
+  background: #ffffff linear-gradient(90deg, #a040a0 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.poison-water {
+  background: #ffffff linear-gradient(90deg, #a040a0 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.poison-psychic {
+  background: #ffffff linear-gradient(90deg, #a040a0 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.ground-normal {
+  background: #ffffff linear-gradient(90deg, #e0c068 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.ground-poison {
+  background: #ffffff linear-gradient(90deg, #e0c068 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.ground-rock {
+  background: #ffffff linear-gradient(90deg, #e0c068 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.ground-steel {
+  background: #ffffff linear-gradient(90deg, #e0c068 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.ground-water {
+  background: #ffffff linear-gradient(90deg, #e0c068 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.ground-psychic {
+  background: #ffffff linear-gradient(90deg, #e0c068 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.ground-ice {
+  background: #ffffff linear-gradient(90deg, #e0c068 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.rock-steel {
+  background: #ffffff linear-gradient(90deg, #b8a038 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.rock-water {
+  background: #ffffff linear-gradient(90deg, #b8a038 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.bug-normal {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.bug-fighting {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #c03028 50%) repeat scroll 0% 0%;
+}
+.bug-flying {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #a890f0 50%) repeat scroll 0% 0%;
+}
+.bug-poison {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.bug-ground {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.bug-rock {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.bug-ghost {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #705898 50%) repeat scroll 0% 0%;
+}
+.bug-steel {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.bug-fire {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #f08030 50%) repeat scroll 0% 0%;
+}
+.bug-water {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.bug-grass {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.bug-electric {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #f8d030 50%) repeat scroll 0% 0%;
+}
+.bug-psychic {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.bug-ice {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.bug-dragon {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #7038f8 50%) repeat scroll 0% 0%;
+}
+.bug-dark {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #705848 50%) repeat scroll 0% 0%;
+}
+.bug-fairy {
+  background: #ffffff linear-gradient(90deg, #a8b820 50%, #ee99ac 50%) repeat scroll 0% 0%;
+}
+.ghost-normal {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.ghost-poison {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.ghost-ground {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.ghost-rock {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.ghost-steel {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.ghost-water {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.ghost-grass {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.ghost-psychic {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.ghost-ice {
+  background: #ffffff linear-gradient(90deg, #705898 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.steel-water {
+  background: #ffffff linear-gradient(90deg, #b8b8d0 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.fire-normal {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.fire-flying {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #a890f0 50%) repeat scroll 0% 0%;
+}
+.fire-poison {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.fire-ground {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.fire-rock {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.fire-ghost {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #705898 50%) repeat scroll 0% 0%;
+}
+.fire-steel {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.fire-water {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.fire-grass {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.fire-psychic {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.fire-ice {
+  background: #ffffff linear-gradient(90deg, #f08030 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.grass-normal {
+  background: #ffffff linear-gradient(90deg, #78c850 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.grass-poison {
+  background: #ffffff linear-gradient(90deg, #78c850 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.grass-ground {
+  background: #ffffff linear-gradient(90deg, #78c850 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.grass-rock {
+  background: #ffffff linear-gradient(90deg, #78c850 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.grass-steel {
+  background: #ffffff linear-gradient(90deg, #78c850 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.grass-water {
+  background: #ffffff linear-gradient(90deg, #78c850 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.grass-psychic {
+  background: #ffffff linear-gradient(90deg, #78c850 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.grass-ice {
+  background: #ffffff linear-gradient(90deg, #78c850 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.electric-normal {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.electric-fighting {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #c03028 50%) repeat scroll 0% 0%;
+}
+.electric-flying {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #a890f0 50%) repeat scroll 0% 0%;
+}
+.electric-poison {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.electric-ground {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.electric-rock {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.electric-ghost {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #705898 50%) repeat scroll 0% 0%;
+}
+.electric-steel {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.electric-fire {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #f08030 50%) repeat scroll 0% 0%;
+}
+.electric-water {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.electric-grass {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.electric-psychic {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.electric-ice {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.electric-fairy {
+  background: #ffffff linear-gradient(90deg, #f8d030 50%, #ee99ac 50%) repeat scroll 0% 0%;
+}
+.psychic-rock {
+  background: #ffffff linear-gradient(90deg, #f85888 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.psychic-steel {
+  background: #ffffff linear-gradient(90deg, #f85888 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.psychic-water {
+  background: #ffffff linear-gradient(90deg, #f85888 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.ice-normal {
+  background: #ffffff linear-gradient(90deg, #98d8d8 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.ice-poison {
+  background: #ffffff linear-gradient(90deg, #98d8d8 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.ice-rock {
+  background: #ffffff linear-gradient(90deg, #98d8d8 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.ice-steel {
+  background: #ffffff linear-gradient(90deg, #98d8d8 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.ice-water {
+  background: #ffffff linear-gradient(90deg, #98d8d8 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.ice-psychic {
+  background: #ffffff linear-gradient(90deg, #98d8d8 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.dragon-normal {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.dragon-fighting {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #c03028 50%) repeat scroll 0% 0%;
+}
+.dragon-flying {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #a890f0 50%) repeat scroll 0% 0%;
+}
+.dragon-poison {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.dragon-ground {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.dragon-rock {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.dragon-ghost {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #705898 50%) repeat scroll 0% 0%;
+}
+.dragon-steel {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.dragon-fire {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #f08030 50%) repeat scroll 0% 0%;
+}
+.dragon-water {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.dragon-grass {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.dragon-electric {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #f8d030 50%) repeat scroll 0% 0%;
+}
+.dragon-psychic {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.dragon-ice {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.dragon-fairy {
+  background: #ffffff linear-gradient(90deg, #7038f8 50%, #ee99ac 50%) repeat scroll 0% 0%;
+}
+.dark-normal {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.dark-fighting {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #c03028 50%) repeat scroll 0% 0%;
+}
+.dark-flying {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #a890f0 50%) repeat scroll 0% 0%;
+}
+.dark-poison {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.dark-ground {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.dark-rock {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.dark-ghost {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #705898 50%) repeat scroll 0% 0%;
+}
+.dark-steel {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.dark-fire {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #f08030 50%) repeat scroll 0% 0%;
+}
+.dark-water {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.dark-grass {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.dark-electric {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #f8d030 50%) repeat scroll 0% 0%;
+}
+.dark-psychic {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.dark-ice {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}
+.dark-dragon {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #7038f8 50%) repeat scroll 0% 0%;
+}
+.dark-fairy {
+  background: #ffffff linear-gradient(90deg, #705848 50%, #ee99ac 50%) repeat scroll 0% 0%;
+}
+.fairy-normal {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #a8a878 50%) repeat scroll 0% 0%;
+}
+.fairy-fighting {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #c03028 50%) repeat scroll 0% 0%;
+}
+.fairy-flying {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #a890f0 50%) repeat scroll 0% 0%;
+}
+.fairy-poison {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #a040a0 50%) repeat scroll 0% 0%;
+}
+.fairy-ground {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #e0c068 50%) repeat scroll 0% 0%;
+}
+.fairy-rock {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #b8a038 50%) repeat scroll 0% 0%;
+}
+.fairy-ghost {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #705898 50%) repeat scroll 0% 0%;
+}
+.fairy-steel {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #b8b8d0 50%) repeat scroll 0% 0%;
+}
+.fairy-fire {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #f08030 50%) repeat scroll 0% 0%;
+}
+.fairy-water {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #6890f0 50%) repeat scroll 0% 0%;
+}
+.fairy-grass {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #78c850 50%) repeat scroll 0% 0%;
+}
+.fairy-psychic {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #f85888 50%) repeat scroll 0% 0%;
+}
+.fairy-ice {
+  background: #ffffff linear-gradient(90deg, #ee99ac 50%, #98d8d8 50%) repeat scroll 0% 0%;
+}

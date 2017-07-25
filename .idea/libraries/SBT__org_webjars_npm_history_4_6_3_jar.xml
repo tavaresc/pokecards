@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.webjars.npm:history:4.6.3:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/history/jars/history-4.6.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/history/srcs/history-4.6.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,542 @@
+// Simple color and classes definitions for each pokemon type
+
+// default color
+@theme-success: #2C3E50;
+.colorless {
+  background: @theme-success;
+}
+@normal: #A8A878;
+.normal {
+  background : @normal;
+}
+@fighting: #C03028;
+.fighting {
+  background : @fighting;
+}
+@flying: #A890F0;
+.flying {
+  background : @flying;
+}
+@poison: #A040A0;
+.poison {
+  background : @poison;
+}
+@ground: #E0C068;
+.ground {
+  background : @ground;
+}
+@rock: #B8A038;
+.rock {
+  background : @rock;
+}
+@bug: #A8B820;
+.bug {
+  background : @bug;
+}
+@ghost: #705898;
+.ghost {
+  background : @ghost;
+}
+@steel: #B8B8D0;
+.steel {
+  background : @steel;
+}
+@fire: #F08030;
+.fire {
+  background : @fire;
+}
+@water: #6890F0;
+.water {
+  background : @water;
+}
+@grass: #78C850;
+.grass {
+  background : @grass;
+}
+@electric: #F8D030;
+.electric {
+  background : @electric;
+}
+@psychic: #F85888;
+.psychic {
+  background : @psychic;
+}
+@ice: #98D8D8;
+.ice {
+  background : @ice;
+}
+@dragon: #7038F8;
+.dragon {
+  background : @dragon;
+}
+@dark: #705848;
+.dark {
+  background : @dark;
+}
+@fairy: #EE99AC;
+.fairy {
+  background : @fairy;
+}
+
+
+// Gradient classes definitions for pokemons with two types
+
+.normal-poison{
+  background: white linear-gradient(90deg, @normal 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.normal-rock{
+  background: white linear-gradient(90deg, @normal 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.normal-steel{
+  background: white linear-gradient(90deg, @normal 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.normal-water{
+  background: white linear-gradient(90deg, @normal 50%, @water 50%) repeat scroll 0% 0%;
+}
+.normal-psychic{
+  background: white linear-gradient(90deg, @normal 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.fighting-normal{
+  background: white linear-gradient(90deg, @fighting 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.fighting-flying{
+  background: white linear-gradient(90deg, @fighting 50%, @flying 50%) repeat scroll 0% 0%;
+}
+.fighting-poison{
+  background: white linear-gradient(90deg, @fighting 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.fighting-ground{
+  background: white linear-gradient(90deg, @fighting 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.fighting-rock{
+  background: white linear-gradient(90deg, @fighting 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.fighting-ghost{
+  background: white linear-gradient(90deg, @fighting 50%, @ghost 50%) repeat scroll 0% 0%;
+}
+.fighting-steel{
+  background: white linear-gradient(90deg, @fighting 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.fighting-fire{
+  background: white linear-gradient(90deg, @fighting 50%, @fire 50%) repeat scroll 0% 0%;
+}
+.fighting-water{
+  background: white linear-gradient(90deg, @fighting 50%, @water 50%) repeat scroll 0% 0%;
+}
+.fighting-grass{
+  background: white linear-gradient(90deg, @fighting 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.fighting-psychic{
+  background: white linear-gradient(90deg, @fighting 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.fighting-ice{
+  background: white linear-gradient(90deg, @fighting 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.flying-normal{
+  background: white linear-gradient(90deg, @flying 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.flying-poison{
+  background: white linear-gradient(90deg, @flying 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.flying-ground{
+  background: white linear-gradient(90deg, @flying 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.flying-rock{
+  background: white linear-gradient(90deg, @flying 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.flying-ghost{
+  background: white linear-gradient(90deg, @flying 50%, @ghost 50%) repeat scroll 0% 0%;
+}
+.flying-steel{
+  background: white linear-gradient(90deg, @flying 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.flying-water{
+  background: white linear-gradient(90deg, @flying 50%, @water 50%) repeat scroll 0% 0%;
+}
+.flying-grass{
+  background: white linear-gradient(90deg, @flying 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.flying-psychic{
+  background: white linear-gradient(90deg, @flying 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.flying-ice{
+  background: white linear-gradient(90deg, @flying 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.poison-rock{
+  background: white linear-gradient(90deg, @poison 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.poison-steel{
+  background: white linear-gradient(90deg, @poison 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.poison-water{
+  background: white linear-gradient(90deg, @poison 50%, @water 50%) repeat scroll 0% 0%;
+}
+.poison-psychic{
+  background: white linear-gradient(90deg, @poison 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.ground-normal{
+  background: white linear-gradient(90deg, @ground 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.ground-poison{
+  background: white linear-gradient(90deg, @ground 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.ground-rock{
+  background: white linear-gradient(90deg, @ground 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.ground-steel{
+  background: white linear-gradient(90deg, @ground 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.ground-water{
+  background: white linear-gradient(90deg, @ground 50%, @water 50%) repeat scroll 0% 0%;
+}
+.ground-psychic{
+  background: white linear-gradient(90deg, @ground 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.ground-ice{
+  background: white linear-gradient(90deg, @ground 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.rock-steel{
+  background: white linear-gradient(90deg, @rock 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.rock-water{
+  background: white linear-gradient(90deg, @rock 50%, @water 50%) repeat scroll 0% 0%;
+}
+.bug-normal{
+  background: white linear-gradient(90deg, @bug 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.bug-fighting{
+  background: white linear-gradient(90deg, @bug 50%, @fighting 50%) repeat scroll 0% 0%;
+}
+.bug-flying{
+  background: white linear-gradient(90deg, @bug 50%, @flying 50%) repeat scroll 0% 0%;
+}
+.bug-poison{
+  background: white linear-gradient(90deg, @bug 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.bug-ground{
+  background: white linear-gradient(90deg, @bug 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.bug-rock{
+  background: white linear-gradient(90deg, @bug 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.bug-ghost{
+  background: white linear-gradient(90deg, @bug 50%, @ghost 50%) repeat scroll 0% 0%;
+}
+.bug-steel{
+  background: white linear-gradient(90deg, @bug 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.bug-fire{
+  background: white linear-gradient(90deg, @bug 50%, @fire 50%) repeat scroll 0% 0%;
+}
+.bug-water{
+  background: white linear-gradient(90deg, @bug 50%, @water 50%) repeat scroll 0% 0%;
+}
+.bug-grass{
+  background: white linear-gradient(90deg, @bug 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.bug-electric{
+  background: white linear-gradient(90deg, @bug 50%, @electric 50%) repeat scroll 0% 0%;
+}
+.bug-psychic{
+  background: white linear-gradient(90deg, @bug 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.bug-ice{
+  background: white linear-gradient(90deg, @bug 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.bug-dragon{
+  background: white linear-gradient(90deg, @bug 50%, @dragon 50%) repeat scroll 0% 0%;
+}
+.bug-dark{
+  background: white linear-gradient(90deg, @bug 50%, @dark 50%) repeat scroll 0% 0%;
+}
+.bug-fairy{
+  background: white linear-gradient(90deg, @bug 50%, @fairy 50%) repeat scroll 0% 0%;
+}
+.ghost-normal{
+  background: white linear-gradient(90deg, @ghost 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.ghost-poison{
+  background: white linear-gradient(90deg, @ghost 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.ghost-ground{
+  background: white linear-gradient(90deg, @ghost 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.ghost-rock{
+  background: white linear-gradient(90deg, @ghost 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.ghost-steel{
+  background: white linear-gradient(90deg, @ghost 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.ghost-water{
+  background: white linear-gradient(90deg, @ghost 50%, @water 50%) repeat scroll 0% 0%;
+}
+.ghost-grass{
+  background: white linear-gradient(90deg, @ghost 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.ghost-psychic{
+  background: white linear-gradient(90deg, @ghost 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.ghost-ice{
+  background: white linear-gradient(90deg, @ghost 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.steel-water{
+  background: white linear-gradient(90deg, @steel 50%, @water 50%) repeat scroll 0% 0%;
+}
+.fire-normal{
+  background: white linear-gradient(90deg, @fire 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.fire-flying{
+  background: white linear-gradient(90deg, @fire 50%, @flying 50%) repeat scroll 0% 0%;
+}
+.fire-poison{
+  background: white linear-gradient(90deg, @fire 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.fire-ground{
+  background: white linear-gradient(90deg, @fire 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.fire-rock{
+  background: white linear-gradient(90deg, @fire 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.fire-ghost{
+  background: white linear-gradient(90deg, @fire 50%, @ghost 50%) repeat scroll 0% 0%;
+}
+.fire-steel{
+  background: white linear-gradient(90deg, @fire 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.fire-water{
+  background: white linear-gradient(90deg, @fire 50%, @water 50%) repeat scroll 0% 0%;
+}
+.fire-grass{
+  background: white linear-gradient(90deg, @fire 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.fire-psychic{
+  background: white linear-gradient(90deg, @fire 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.fire-ice{
+  background: white linear-gradient(90deg, @fire 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.grass-normal{
+  background: white linear-gradient(90deg, @grass 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.grass-poison{
+  background: white linear-gradient(90deg, @grass 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.grass-ground{
+  background: white linear-gradient(90deg, @grass 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.grass-rock{
+  background: white linear-gradient(90deg, @grass 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.grass-steel{
+  background: white linear-gradient(90deg, @grass 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.grass-water{
+  background: white linear-gradient(90deg, @grass 50%, @water 50%) repeat scroll 0% 0%;
+}
+.grass-psychic{
+  background: white linear-gradient(90deg, @grass 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.grass-ice{
+  background: white linear-gradient(90deg, @grass 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.electric-normal{
+  background: white linear-gradient(90deg, @electric 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.electric-fighting{
+  background: white linear-gradient(90deg, @electric 50%, @fighting 50%) repeat scroll 0% 0%;
+}
+.electric-flying{
+  background: white linear-gradient(90deg, @electric 50%, @flying 50%) repeat scroll 0% 0%;
+}
+.electric-poison{
+  background: white linear-gradient(90deg, @electric 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.electric-ground{
+  background: white linear-gradient(90deg, @electric 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.electric-rock{
+  background: white linear-gradient(90deg, @electric 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.electric-ghost{
+  background: white linear-gradient(90deg, @electric 50%, @ghost 50%) repeat scroll 0% 0%;
+}
+.electric-steel{
+  background: white linear-gradient(90deg, @electric 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.electric-fire{
+  background: white linear-gradient(90deg, @electric 50%, @fire 50%) repeat scroll 0% 0%;
+}
+.electric-water{
+  background: white linear-gradient(90deg, @electric 50%, @water 50%) repeat scroll 0% 0%;
+}
+.electric-grass{
+  background: white linear-gradient(90deg, @electric 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.electric-psychic{
+  background: white linear-gradient(90deg, @electric 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.electric-ice{
+  background: white linear-gradient(90deg, @electric 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.electric-fairy{
+  background: white linear-gradient(90deg, @electric 50%, @fairy 50%) repeat scroll 0% 0%;
+}
+.psychic-rock{
+  background: white linear-gradient(90deg, @psychic 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.psychic-steel{
+  background: white linear-gradient(90deg, @psychic 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.psychic-water{
+  background: white linear-gradient(90deg, @psychic 50%, @water 50%) repeat scroll 0% 0%;
+}
+.ice-normal{
+  background: white linear-gradient(90deg, @ice 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.ice-poison{
+  background: white linear-gradient(90deg, @ice 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.ice-rock{
+  background: white linear-gradient(90deg, @ice 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.ice-steel{
+  background: white linear-gradient(90deg, @ice 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.ice-water{
+  background: white linear-gradient(90deg, @ice 50%, @water 50%) repeat scroll 0% 0%;
+}
+.ice-psychic{
+  background: white linear-gradient(90deg, @ice 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.dragon-normal{
+  background: white linear-gradient(90deg, @dragon 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.dragon-fighting{
+  background: white linear-gradient(90deg, @dragon 50%, @fighting 50%) repeat scroll 0% 0%;
+}
+.dragon-flying{
+  background: white linear-gradient(90deg, @dragon 50%, @flying 50%) repeat scroll 0% 0%;
+}
+.dragon-poison{
+  background: white linear-gradient(90deg, @dragon 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.dragon-ground{
+  background: white linear-gradient(90deg, @dragon 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.dragon-rock{
+  background: white linear-gradient(90deg, @dragon 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.dragon-ghost{
+  background: white linear-gradient(90deg, @dragon 50%, @ghost 50%) repeat scroll 0% 0%;
+}
+.dragon-steel{
+  background: white linear-gradient(90deg, @dragon 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.dragon-fire{
+  background: white linear-gradient(90deg, @dragon 50%, @fire 50%) repeat scroll 0% 0%;
+}
+.dragon-water{
+  background: white linear-gradient(90deg, @dragon 50%, @water 50%) repeat scroll 0% 0%;
+}
+.dragon-grass{
+  background: white linear-gradient(90deg, @dragon 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.dragon-electric{
+  background: white linear-gradient(90deg, @dragon 50%, @electric 50%) repeat scroll 0% 0%;
+}
+.dragon-psychic{
+  background: white linear-gradient(90deg, @dragon 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.dragon-ice{
+  background: white linear-gradient(90deg, @dragon 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.dragon-fairy{
+  background: white linear-gradient(90deg, @dragon 50%, @fairy 50%) repeat scroll 0% 0%;
+}
+.dark-normal{
+  background: white linear-gradient(90deg, @dark 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.dark-fighting{
+  background: white linear-gradient(90deg, @dark 50%, @fighting 50%) repeat scroll 0% 0%;
+}
+.dark-flying{
+  background: white linear-gradient(90deg, @dark 50%, @flying 50%) repeat scroll 0% 0%;
+}
+.dark-poison{
+  background: white linear-gradient(90deg, @dark 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.dark-ground{
+  background: white linear-gradient(90deg, @dark 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.dark-rock{
+  background: white linear-gradient(90deg, @dark 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.dark-ghost{
+  background: white linear-gradient(90deg, @dark 50%, @ghost 50%) repeat scroll 0% 0%;
+}
+.dark-steel{
+  background: white linear-gradient(90deg, @dark 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.dark-fire{
+  background: white linear-gradient(90deg, @dark 50%, @fire 50%) repeat scroll 0% 0%;
+}
+.dark-water{
+  background: white linear-gradient(90deg, @dark 50%, @water 50%) repeat scroll 0% 0%;
+}
+.dark-grass{
+  background: white linear-gradient(90deg, @dark 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.dark-electric{
+  background: white linear-gradient(90deg, @dark 50%, @electric 50%) repeat scroll 0% 0%;
+}
+.dark-psychic{
+  background: white linear-gradient(90deg, @dark 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.dark-ice{
+  background: white linear-gradient(90deg, @dark 50%, @ice 50%) repeat scroll 0% 0%;
+}
+.dark-dragon{
+  background: white linear-gradient(90deg, @dark 50%, @dragon 50%) repeat scroll 0% 0%;
+}
+.dark-fairy{
+  background: white linear-gradient(90deg, @dark 50%, @fairy 50%) repeat scroll 0% 0%;
+}
+.fairy-normal{
+  background: white linear-gradient(90deg, @fairy 50%, @normal 50%) repeat scroll 0% 0%;
+}
+.fairy-fighting{
+  background: white linear-gradient(90deg, @fairy 50%, @fighting 50%) repeat scroll 0% 0%;
+}
+.fairy-flying{
+  background: white linear-gradient(90deg, @fairy 50%, @flying 50%) repeat scroll 0% 0%;
+}
+.fairy-poison{
+  background: white linear-gradient(90deg, @fairy 50%, @poison 50%) repeat scroll 0% 0%;
+}
+.fairy-ground{
+  background: white linear-gradient(90deg, @fairy 50%, @ground 50%) repeat scroll 0% 0%;
+}
+.fairy-rock{
+  background: white linear-gradient(90deg, @fairy 50%, @rock 50%) repeat scroll 0% 0%;
+}
+.fairy-ghost{
+  background: white linear-gradient(90deg, @fairy 50%, @ghost 50%) repeat scroll 0% 0%;
+}
+.fairy-steel{
+  background: white linear-gradient(90deg, @fairy 50%, @steel 50%) repeat scroll 0% 0%;
+}
+.fairy-fire{
+  background: white linear-gradient(90deg, @fairy 50%, @fire 50%) repeat scroll 0% 0%;
+}
+.fairy-water{
+  background: white linear-gradient(90deg, @fairy 50%, @water 50%) repeat scroll 0% 0%;
+}
+.fairy-grass{
+  background: white linear-gradient(90deg, @fairy 50%, @grass 50%) repeat scroll 0% 0%;
+}
+.fairy-psychic{
+  background: white linear-gradient(90deg, @fairy 50%, @psychic 50%) repeat scroll 0% 0%;
+}
+.fairy-ice{
+  background: white linear-gradient(90deg, @fairy 50%, @ice 50%) repeat scroll 0% 0%;
+}

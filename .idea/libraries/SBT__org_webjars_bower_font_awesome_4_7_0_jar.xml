@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.webjars.bower:font-awesome:4.7.0:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.bower/font-awesome/jars/font-awesome-4.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.bower/font-awesome/srcs/font-awesome-4.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

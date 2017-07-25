@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.webjars.npm:hoist-non-react-statics:1.2.0:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/hoist-non-react-statics/jars/hoist-non-react-statics-1.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/hoist-non-react-statics/srcs/hoist-non-react-statics-1.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

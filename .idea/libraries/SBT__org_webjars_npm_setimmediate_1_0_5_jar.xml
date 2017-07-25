@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SBT: org.webjars.npm:setimmediate:1.0.5:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/setimmediate/jars/setimmediate-1.0.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.webjars.npm/setimmediate/srcs/setimmediate-1.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
