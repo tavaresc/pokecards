@@ -44,13 +44,19 @@ class Pokecard extends React.Component {
         console.log("In Pokecard mount: " + this.props.pokemon.url);
         fetch(this.props.pokemon.url).then(r => r.json()).then(
             d => {
-                var avg_sts = d.types.map(ty => (
-                    {ty_name: ty, hp: 10, atk: 20, def: 30, spd: 40, s_atk: 50, s_def: 60}
-                    //fetch("/types/stats/" + ty).then(r => { console.log(d); return r.json()})
-                ));
+                d.types.map(ty => {
+                    // {ty_name: ty, hp: 10, atk: 20, def: 30, spd: 40, s_atk: 50, s_def: 60}
+                    fetch("/types/stats/" + ty)
+                        .then(r => { console.log(d); return r.json()})
+                        .then(typestats => {
+                            console.log("TYPESTATS: ", this.props.pokemon.name, typestats);
+                            this.setState((prevState, props) => ({
+                                avg_stats: prevState.avg_stats.concat([typestats])
+                            }));
+                        });
+                });
                 console.log(d);
-                console.log(avg_sts);
-                this.setState({ stats: d, avg_stats: avg_sts });
+                this.setState({ stats: d});
             }
         );
     }
@@ -91,9 +97,44 @@ class Pokecard extends React.Component {
     }
 
     getWidth(num, dom_elem) {
-        console.log(this.refs.refName);
-        var w = (num * dom_elem) / 100; // get width of div since w will be rendered in `px`
-        return ({width: w});
+        var w =  100 * num / 255; // get width of div since w will be rendered in `px`
+        console.log("WIDTH: ", w);
+        return { width: w + '%'};
+
+    }
+
+    renderOneStat(stat_name) {
+        return (
+            <div className="row">
+                <div className="col-xs-2">
+                    <h4>{stat_name}</h4>
+                </div>
+
+                <div className="col-xs-10">
+                    <div className="progress">
+                        <div className="progress-bar main-bar" role="progressbar"
+                             style={this.getWidth(this.state.stats[stat_name])}
+                             aria-valuenow={this.state.stats[stat_name]} aria-valuemin="0" aria-valuemax="100">
+                            <span className="stat_value">{this.state.stats[stat_name] }</span>
+                        </div>
+                    </div>
+                    {this.state.avg_stats.map(
+                        (ty_avg,id) => {
+                            var pclass = "progress-bar " + ty_avg.name;
+                            return (
+                                <div className="progress">
+                                    <div className={pclass} role="progressbar"
+                                         style={this.getWidth(ty_avg[stat_name])}
+                                         aria-valuenow={ty_avg[stat_name]} aria-valuemin="0" aria-valuemax="100">
+                                        <span className="stat_value"> {ty_avg[stat_name] }</span>
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+        );
     }
 
     renderStats(pk_name) {
@@ -105,44 +146,15 @@ class Pokecard extends React.Component {
             var bar = {width: 83}
             return (
                 <div key={pk_name} className="name">
-                    <div className="row">
-                        <div className="col-xs-2">
-                            <h3>Attack</h3>
-                        </div>
-                        <div className="col-xs-10">
-                            <div className="progress">
-                                <div className="progress-bar" role="progressbar"
-                                     style={this.getWidth(this.state.stats.attack, this.refs.node)}
-                                     aria-valuenow={this.state.stats.attack} aria-valuemin="0" aria-valuemax="100">
-                                    {this.state.stats.attack + "%"}
-                                </div>
-                                {this.state.avg_stats.map((ty_avg,id) =>
-                                    <span key={id} className={ty_avg.ty_name}>{ty_avg.atk}</span>)}
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <h3>Defense: {this.state.stats.defense}
-                        {this.state.avg_stats.map((ty_avg,id) =>
-                            <span key={id} className={ty_avg.ty_name}>{ty_avg.def}</span>)}
-                    </h3>
-                    <h3>Speed: {this.state.stats.speed}
-                        {this.state.avg_stats.map((ty_avg,id) =>
-                            <span key={id} className={ty_avg.ty_name}>{ty_avg.spd}</span>)}
-                    </h3>
-                    <h3>Sp Attak: {this.state.stats.sp_attack}
-                        {this.state.avg_stats.map((ty_avg,id) =>
-                            <span key={id} className={ty_avg.ty_name}>{ty_avg.s_atk}</span>)}
-                    </h3>
-                    <h3>Sp Defense: {this.state.stats.sp_defense}
-                        {this.state.avg_stats.map((ty_avg,id) =>
-                            <span key={id} className={ty_avg.ty_name}>{ty_avg.s_def}</span>)}
-                    </h3>
+                    {this.renderOneStat("attack")}
+                    {this.renderOneStat("defense")}
+                    {this.renderOneStat("speed")}
+                    {this.renderOneStat("sp_attack")}
+                    {this.renderOneStat("sp_defense")}
                 </div>
             );
         }
-        return ;
+        return (<div></div>);
     }
 
     renderCard() {
@@ -186,7 +198,7 @@ class Pokecard extends React.Component {
                 </div>
             );
         }
-        return ;
+        return (<div></div>);
     }
 
     render() {

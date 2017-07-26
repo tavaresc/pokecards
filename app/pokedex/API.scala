@@ -8,8 +8,9 @@ package pokedex
 
 // Using loggers
 import play.api.Logger
-
 import play.api.cache._
+
+import scala.collection.JavaConverters._
 import scala.concurrent.duration._
 
 // Enable the use o the WS API as a client able to process requests using
@@ -81,7 +82,7 @@ class API @Inject()(ws:WSClient, cache: CacheApi)(implicit exec: ExecutionContex
   def getType(typename: String): Future[pokedex.Type] = {
     val url = type_url(typename)
     Logger.debug("Retrieving type characteristics for " + typename + " @ " + url)
-    ws.url(url).get.map { r => (r.json  \ "id" \ "name" \ "pokemon").get.as[pokedex.Type] }
+    ws.url(url).get.map { r => r.json.as[pokedex.Type] }
   }
 
   /** Get all available pokemons from the pokeapi.
@@ -94,17 +95,20 @@ class API @Inject()(ws:WSClient, cache: CacheApi)(implicit exec: ExecutionContex
       * urlWithLimit
       */
     val pokemonMaxCount = 811;
-    val url = "http://pokeapi.co/api/v2/pokemon/?limit=%d" + pokemonMaxCount
+    val url = "http://pokeapi.co/api/v2/pokemon/?limit=" + pokemonMaxCount
+    Logger.debug("Pokemon url:" + url)
     // define cache (of Play) key
     val key = "all_pokemons"
 
     // Explicit type coercion seems to help here in not having server erros
-    val pokemonNameList: Option[List[String]] = cache.get(key)
+    val pokemonNameList: Option[List[String]] = None // cache.get(key)
     pokemonNameList match {
       case None =>
+        Logger.debug("Pokemon url:" + url)
       // First : retrieve the list of pokemon resources linked to the url
       val nameAPIResourceList: Future[List[NamedAPIResource]] =
       ws.url(url).get.map { r => (r.json \ "results").as[List[NamedAPIResource]] }
+
 
       // Second : extract only the names from the resources since this is the only information we want
       val pokemonNameList: Future[List[String]] =
@@ -115,7 +119,8 @@ class API @Inject()(ws:WSClient, cache: CacheApi)(implicit exec: ExecutionContex
        */
        pokemonNameList.map {
           list =>
-            cache.set(key, list, 5.minutes)
+            Logger.debug("Found %d pokemons : ".format(list.length) + list.toString())
+              // cache.set(key, list, 5.minutes)
             list
     }
       case Some(pokemons) => Future { pokemons }

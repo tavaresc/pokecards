@@ -34,7 +34,7 @@ var theme = {
     suggestionsContainer:     'react-autosuggest__suggestions-container',
     suggestionsContainerOpen: 'react-autosuggest__suggestions-container--open',
     suggestionsList:          'list-inline',
-    suggestion:               '',
+    suggestion:               'auto-suggestion',
     suggestionFirst:          'react-autosuggest__suggestion--first',
     suggestionHighlighted:    'react-autosuggest__suggestion--highlighted',
     sectionContainer:         'react-autosuggest__section-container',

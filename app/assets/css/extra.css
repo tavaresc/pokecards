@@ -3,26 +3,101 @@
 }
 
 .tw-img {
-    width: 50%;
+    /*width: 50%;*/
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
 }
 
 .tw-profile-img {
+    border-radius: 50%;
+    padding-right: 5px;
+}
+
+.tw-name {
+    font-weight: 700;
+    padding-right: 5px;
 }
 
 .tw-nick {
-    font-size: 10px;
-    background-color: black;
-    color: white;
+    color: darkgray;
+    font-weight: 700;
+    padding-right: 5px;
+}
+
+.tw-date {
+    color: darkgray;
+    padding: 0 5px;
 }
 
 .tw-tweet {
-    border-style: solid;
-    border-width: 1px;
-    padding: 5px;
+    padding: 10px 5px;
+    border-top: solid 1px lightgray;
+}
+
+#pokecard .tw-tweet {
+    width: 100%;
+    height: auto;
+    margin-left:10px;
+
+}
+.tw-urls, .tw-text, .tw-media {
+    margin-left:15px;
+}
+
+.tw-hashtag {
+    margin-left:15px;
+    padding-top: 10px;
+}
+
+.hyphenate {
+    /* Careful, this breaks the word wherever it is without a hyphen */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    /* Adds a hyphen where the word breaks */
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
 }
 
 .tweets {
-    padding: 3px;
-    height: 500px;
+    padding: 0px 30px 10px 30px;
+    max-height: 600px;
     overflow: scroll;
+}
+
+.tweets-header {
+    padding: 0px;
+}
+
+.twitter-color {
+    color: #1da1f2;
+    font-size: 40px;
+}
+
+.tweet-query {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 18px;
+    padding-left: 5px;
+    margin-top: -10px;
+}
+
+.tweet-query a {
+    color: #1da1f2;
+}
+
+li.auto-suggestion {
+    background-color: lightgray;
+    margin:3px;
+    border-radius: 5px;
+}
+
+li.auto-suggestion:hover {
+    background-color: #FED136;
+    font-weight: 700;
+
 }

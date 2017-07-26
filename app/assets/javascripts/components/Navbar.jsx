@@ -18,6 +18,9 @@ const Navbar = () => (
             {/* Collect the nav links, forms, and other content for toggling */}
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav navbar-right">
+                    <li className="hidden active">
+                        <a href="#page-top"></a>
+                    </li>
                     <li className="page-scroll">
                         <a href="#portfolio">Portfolio</a>
                     </li>

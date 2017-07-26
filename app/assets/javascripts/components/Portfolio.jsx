@@ -32,8 +32,8 @@ class Portfolio extends React.Component {
         var url = "/pokemons/";
         fetch(url).then(r => r.json()).then(
             d => {
-                console.log("Portfolio pks: " + d);
-                var choice = d.slice(0, 40).sort();
+                console.log("Portfolio pks: " + d.length);
+                var choice = d.slice(0, 100).sort();
                 this.setState({
                     pokemons: choice,
                     selectable: choice

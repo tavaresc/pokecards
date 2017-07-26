@@ -41,6 +41,9 @@
 .dislike {
   color: red;
 }
+.main-bar {
+  background-color: #2C3E50;
+}
 #pokecard .pokecard-item {
   margin: 0 0 15px;
   right: 0;
@@ -59,6 +62,10 @@
   font-size: 25px;
 }
 #pokecard .pokecard-item .card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+#pokecard .pokecard-item .card h4 {
   font-size: 14px;
   margin: 10px 0;
 }

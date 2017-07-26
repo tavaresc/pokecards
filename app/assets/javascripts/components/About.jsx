@@ -24,8 +24,8 @@ const About = () => (
                         of his types.</p>
                 </div>
                 <div className="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" className="btn btn-lg btn-outline">
-                        <i className="fa fa-download"></i> Download Theme
+                    <a href="https://github.com/tavaresc/pokecards" className="btn btn-lg btn-outline">
+                        <i className="fa fa-github"></i> Pokecards on GitHub
                     </a>
                 </div>
             </div>
