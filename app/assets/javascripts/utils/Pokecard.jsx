@@ -122,7 +122,7 @@ class Pokecard extends React.Component {
                         (ty_avg,id) => {
                             var pclass = "progress-bar " + ty_avg.name;
                             return (
-                                <div className="progress">
+                                <div key="id" className="progress">
                                     <div className={pclass} role="progressbar"
                                          style={this.getWidth(ty_avg[stat_name])}
                                          aria-valuenow={ty_avg[stat_name]} aria-valuemin="0" aria-valuemax="100">
