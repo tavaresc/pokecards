@@ -9,7 +9,7 @@ const Header = () => (
         <div className="container" id="maincontent" tabIndex="-1">
             <div className="row">
                 <div className="col-lg-12">
-                    <img className="img-responsive" src="./img/logo.png" alt="Pokecards logo"/>
+                    <img className="img-responsive" src="/assets/img/logo.png" alt="Pokecards logo"/>
                    </div>
             </div>
         </div>

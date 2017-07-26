@@ -1,10 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+@*
+* This template is for the initial webpage and takes required packages.
+*@
+@(webJarAssets: WebJarAssets, requireJS: org.webjars.play.RequireJS)
+
+@*
+* Call the `main_react` template with four arguments. The first
+* argument is a `String` with the title of the page, the second and third ones are packages to be imported. The fourth
+* argument is an `Html` object containing the body of the page.
+* Here we include each one of our reactJS component as scripts
+*@
+@* TODO update components *@
+@main_react("PokeCards", webJarAssets, requireJS) {
+  @* Include each one of our reactJS components of the initial webpage as scripts *@
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/components/Autocomplete.js")'></script>
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/utils/Pokemon.js")'></script>
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/utils/PokemonList.js")'></script>
+
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/components/Navbar.js")'></script>
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/components/Header.js")'></script>
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/components/Portfolio.js")'></script>
+
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/components/About.js")'></script>
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/components/Footer.js")'></script>
+
+  <script type='text/javascript' src='@routes.Assets.versioned("javascripts/components/Home.js")'></script>
+
+}

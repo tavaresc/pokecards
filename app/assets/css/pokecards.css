@@ -9,6 +9,38 @@
 .text-white {
   color: white;
 }
+.single-text {
+  padding: 0 20px 0 6px;
+  font-size: 14px;
+}
+.opinion {
+  padding-bottom: 10px;
+}
+.btn-opinion {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+}
+.btn-like,
+.btn-dislike {
+  color: darkgray;
+}
+.btn-like:hover,
+.btn-like:focus,
+.btn-like:active {
+  color: green;
+}
+.btn-dislike:hover,
+.btn-dislike:focus,
+.btn-dislike:active {
+  color: red;
+}
+.like {
+  color: green;
+}
+.dislike {
+  color: red;
+}
 #pokecard .pokecard-item {
   margin: 0 0 15px;
   right: 0;
@@ -30,12 +62,15 @@
   font-size: 14px;
   margin: 10px 0;
 }
+#pokecard .pokecard-item .card .opinion .btn-opinion {
+  font-size: 18px;
+}
 #pokecard .pokecard-item .card .hp {
   background-color: darkgray;
   color: white;
   text-align: center;
   margin-top: -10px;
-  padding: 15px 5px 10px 5px;
+  padding: 13px 5px 10px 5px;
 }
 #pokecard .pokecard-item .card .btn-circle {
   width: 40px;

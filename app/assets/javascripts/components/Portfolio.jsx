@@ -11,13 +11,9 @@ import PortfolioItems from './PortfolioItems';
 class Portfolio extends React.Component {
     constructor () {
         super();
-        var v = ["pichu", "ivysaur", "pikachu", "wartortle", "arceus", "mewtwo",
-            "pikachu", "jigglypuff", "eevee", "doduo", "dodrio", "mew",
-            "snorlax", "articuno", "metagross" ].sort();
-        v = [];
         this.state = {
-            pokemons: v,
-            selectable: v
+            pokemons: [],
+            selectable: []
         };
         this.onSearchChange = this.onSearchChange.bind(this);
         this.resetSelectable = this.resetSelectable.bind(this);
@@ -36,7 +32,8 @@ class Portfolio extends React.Component {
         var url = "/pokemons/";
         fetch(url).then(r => r.json()).then(
             d => {
-                var choice = d.slice(0, 20).sort();
+                console.log("Portfolio pks: " + d);
+                var choice = d.slice(0, 40).sort();
                 this.setState({
                     pokemons: choice,
                     selectable: choice

@@ -1,0 +1,28 @@
+#search {
+    padding: 2%;
+}
+
+.tw-img {
+    width: 50%;
+}
+
+.tw-profile-img {
+}
+
+.tw-nick {
+    font-size: 10px;
+    background-color: black;
+    color: white;
+}
+
+.tw-tweet {
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px;
+}
+
+.tweets {
+    padding: 3px;
+    height: 500px;
+    overflow: scroll;
+}

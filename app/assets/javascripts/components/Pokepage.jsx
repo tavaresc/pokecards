@@ -16,10 +16,17 @@ class Pokepage extends React.Component {
       render(){
         //console.log("Pokecard Props: " + this.state.pokemon.name);
 
+        // `window.location.pathname` javascript command to get current url without `http://`
+        // TODO: in ReactJS, this corresponds to props and is set by the router
+        var path_elements = window.location.pathname.split("/"); //try this.props.location
+        console.log(path_elements);
+        // get the main url, until the first `/`
+        var name =  path_elements[path_elements.length - 1];
         var pk = {
-            url: "http://pokeapi.co/api/v2/pokemon/" + this.props.match.params.name,
-            name: this.props.match.params.name,
+          url: "/pokemons/stats/" + name,
+          name: name
         };
+
         return (
             <section id="pokecard">
                 <div className="container">
@@ -36,5 +43,13 @@ class Pokepage extends React.Component {
         )
     }
 }
+
+/**
+ * This code comes originally from index.js (in ReactJS)
+ */
+ReactDOM.render(
+    <Pokepage />,
+    document.getElementById('root')
+);
 
 //export default Pokepage;

@@ -28,14 +28,14 @@ var iconMapping = {
     fairy: "magic",
 };
 
-class Pokecard extends Component {
+class Pokecard extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            types: [], // Just to avoid a map on undefined below in renderCard
+            stats: { types: [] }, // Just to avoid a map on undefined below in renderCard
             // model avg_stats: [{ty_name: "", hp: -1, atk: -1, def: -1, spd: -1, s_atk: -1, s_def: -1}],
-            avg_stats: [{ty_name: "", hp: -1, atk: -1, def: -1, spd: -1, s_atk: -1, s_def: -1}],
+            avg_stats: [],
 
         };
     }
@@ -46,8 +46,10 @@ class Pokecard extends Component {
             d => {
                 var avg_sts = d.types.map(ty => (
                     {ty_name: ty, hp: 10, atk: 20, def: 30, spd: 40, s_atk: 50, s_def: 60}
+                    //fetch("/types/stats/" + ty).then(r => { console.log(d); return r.json()})
                 ));
                 console.log(d);
+                console.log(avg_sts);
                 this.setState({ stats: d, avg_stats: avg_sts });
             }
         );
@@ -60,9 +62,9 @@ class Pokecard extends Component {
         if (tys !== undefined) {
             if (tys.length === 2) // a pokemon can have at most 2 types
             /* we have created 18x18 css class name for each combination of types named `type1-type2` */
-                color += (tys[0].name < tys[1].name)? (tys[0].name + "-" + tys[1].name): (tys[1].name + "-" + tys[0].name);
+                color += (tys[0] < tys[1])? (tys[0] + "-" + tys[1]): (tys[1] + "-" + tys[0]);
             else // ty.length === 1
-                color += tys[0].name;
+                color += tys[0];
         }
         return color;
     }
@@ -88,32 +90,54 @@ class Pokecard extends Component {
         );
     }
 
+    getWidth(num, dom_elem) {
+        console.log(this.refs.refName);
+        var w = (num * dom_elem) / 100; // get width of div since w will be rendered in `px`
+        return ({width: w});
+    }
+
     renderStats(pk_name) {
         // it avoids undefined states not yet set
         if (this.state.stats !== undefined && this.state.avg_stats !== undefined) {
             console.log("In renderStats: " + this.state.stats["attack"]);
+            //console.log("avg_stats: " + this.state.avg_stats);
 
+            var bar = {width: 83}
             return (
                 <div key={pk_name} className="name">
-                    <h3>Attack: {this.state.stats["attack"]}
-                        {this.state.avg_stats.map(ty_avg =>
-                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.atk}</span>)}
+                    <div className="row">
+                        <div className="col-xs-2">
+                            <h3>Attack</h3>
+                        </div>
+                        <div className="col-xs-10">
+                            <div className="progress">
+                                <div className="progress-bar" role="progressbar"
+                                     style={this.getWidth(this.state.stats.attack, this.refs.node)}
+                                     aria-valuenow={this.state.stats.attack} aria-valuemin="0" aria-valuemax="100">
+                                    {this.state.stats.attack + "%"}
+                                </div>
+                                {this.state.avg_stats.map((ty_avg,id) =>
+                                    <span key={id} className={ty_avg.ty_name}>{ty_avg.atk}</span>)}
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h3>Defense: {this.state.stats.defense}
+                        {this.state.avg_stats.map((ty_avg,id) =>
+                            <span key={id} className={ty_avg.ty_name}>{ty_avg.def}</span>)}
                     </h3>
-                    <h3>Defense: {this.state.stats["defense"]}
-                        {this.state.avg_stats.map(ty_avg =>
-                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.def}</span>)}
+                    <h3>Speed: {this.state.stats.speed}
+                        {this.state.avg_stats.map((ty_avg,id) =>
+                            <span key={id} className={ty_avg.ty_name}>{ty_avg.spd}</span>)}
                     </h3>
-                    <h3>Speed: {this.state.stats["speed"]}
-                        {this.state.avg_stats.map(ty_avg =>
-                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.spd}</span>)}
+                    <h3>Sp Attak: {this.state.stats.sp_attack}
+                        {this.state.avg_stats.map((ty_avg,id) =>
+                            <span key={id} className={ty_avg.ty_name}>{ty_avg.s_atk}</span>)}
                     </h3>
-                    <h3>Sp Attak: {this.state.stats["special-attack"]}
-                        {this.state.avg_stats.map(ty_avg =>
-                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.s_atk}</span>)}
-                    </h3>
-                    <h3>Sp Defense: {this.state.stats["special-defense"]}
-                        {this.state.avg_stats.map(ty_avg =>
-                            <span key={ty_avg.ty_name} className={ty_avg.ty_name}>{ty_avg.s_def}</span>)}
+                    <h3>Sp Defense: {this.state.stats.sp_defense}
+                        {this.state.avg_stats.map((ty_avg,id) =>
+                            <span key={id} className={ty_avg.ty_name}>{ty_avg.s_def}</span>)}
                     </h3>
                 </div>
             );
@@ -130,7 +154,7 @@ class Pokecard extends Component {
 
                     <div className="row-fluid">
                         <div className="col-xs-2 hp">
-                            <h2>{this.state.stats["hp"]}</h2>
+                            <h2>{this.state.stats.hp}</h2>
                         </div>
                         <div className="col-xs-10">
                             <h3>{this.props.pokemon.name}</h3>
@@ -162,7 +186,7 @@ class Pokecard extends Component {
                 </div>
             );
         }
-        return(<div></div>);
+        return ;
     }
 
     render() {

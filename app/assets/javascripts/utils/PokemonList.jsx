@@ -26,7 +26,7 @@ class Opinion extends React.Component {
         var that = this;
         var base_url = "/pokemons/opinions/" + this.props.name;
         fetch(base_url).then(r => r.json()).then(
-            data => that.setState(data)
+            data => that.setState({likes: data.likes, dislikes: data.dislikes})
         );
     }
 
@@ -52,37 +52,40 @@ class Opinion extends React.Component {
     render() {
         return(
             <div>
-                <button className="btn btn-default" onClick={this.like}>
+                <button className="btn btn-opinion btn-like" onClick={this.like}>
                     <i className="fa fa-thumbs-o-up" aria-hidden="true"></i>
                 </button>
-                <span className="label label-success">{this.state.likes}</span>
-                <button className="btn btn-default" onClick={this.dislike}>
+                <span className="single-text like">
+                    {this.state.likes}
+                </span>
+
+                <button className="btn btn-opinion btn-dislike" onClick={this.dislike}>
                     <i className="fa fa-thumbs-o-down" aria-hidden="true"></i>
                 </button>
-                <span className="label label-danger">{this.state.dislikes}</span>
+                <span className="single-text dislike">
+                    {this.state.dislikes}
+                </span>
             </div>
         );
     }
 }
 
-class PokemonList extends Component {
+class PokemonList extends React.Component {
     renderPortfolio(pk) {
-        console.log("PokemonList- props name: " + pk.name);
-        console.log("PokemonList- props url: " + pk.url);
-
+        var href = '/pokecard/' + pk;
         return (
-            <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item" key={pk.name}>
-                <Link to={`/${pk.name}`} className="portfolio-link">
+            <div className="col-xs-6 col-sm-3 col-md-2 portfolio-item" key={pk}>
+                <a href={ href } className="portfolio-link">
                     <div className="caption">
                         <div className="caption-content">
                             <i className="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                    <Pokemon key={pk.name} pokemon={pk} />
-                </Link>
+                    <Pokemon key={pk} pokemon={pk} />
+                </a>
 
                 <div className="name">
-                    <h3>{pk.name}</h3>
+                    <h3>{pk}</h3>
                 </div>
 
                 <div className="opinion">
@@ -95,7 +98,7 @@ class PokemonList extends Component {
     render() {
         return (
             <div>
-                {(this.props.pokemons.slice(0,6)).map(pk => this.renderPortfolio(pk))}
+                {this.props.pokemons.map(pk => this.renderPortfolio(pk))}
             </div>
         )
     }

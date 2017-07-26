@@ -48,7 +48,7 @@ class Tweets extends React.Component {
     renderTweet(tw) {
         console.log("Tweets for ", this.props.pokemon.name, tw);
         return (
-            <div className="tw-tweet row">
+            <div key={tw.id} className="tw-tweet row">
                 <div className="row">
                     <div className="tw-identifer">
                         <div className="col-md-4">
@@ -59,23 +59,23 @@ class Tweets extends React.Component {
                 </div>
                 <div className="row">
                     <div className="tw-urls col-md-12">
-                        {tw.urls.map(u => {
-                            return (<a href={u}>{u}</a>);
+                        {tw.urls.map((u,id) => {
+                            return (<a key={id} href={u}>{u}</a>);
                         }) }
                     </div>
                     <div className="tw-hashtags col-md-12">
-                        {tw.hashtags.map(h => {
+                        {tw.hashtags.map((h,id) => {
                             var txt = "#" + h + " ";
                             var href = "https://twitter.com/search?q=%23" + h;
-                            return (<a className="tw-hashtag" href={href}>{txt}</a>);
+                            return (<a key={id} className="tw-hashtag" href={href}>{txt}</a>);
                         })}
                     </div>
                     <div className=" tw-text col-md-12">
                         { tw.text }
                     </div>
                     <div className="col-md-12 center">
-                        {tw.media.map(m => {
-                            return (<Media media={m}/>);
+                        {tw.media.map((m,id) => {
+                            return (<Media key={id} media={m}/>);
                         })}
                     </div>
                 </div>

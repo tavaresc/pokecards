@@ -1,10 +1,75 @@
+@*
+ * This template is called from the `index_react` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * four arguments, a `String` for the title of the page, two packages to be imported and an `Html`
+ * object to insert into the body of the page.
+ *@
+
+@(title: String, webJarAssets: WebJarAssets, requireJS: org.webjars.play.RequireJS)(content: Html)
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+<html>
+  <head>
+
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src *; script-src *">
+    <meta charset="utf-8">
+    <meta name="description" content="Pokecards website">
+    <meta name="author" content="Claudia Tavares">
+
+    @* Here's where we render the page title `String`. *@
+    <title>@title</title>
+
+    @* Use Bootstrap library. *@
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    @* Custom Fonts *@
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous"/>
+
+    @* Theme CSS from StartBootstrap website *@
+    <link rel="stylesheet" href="@routes.Assets.versioned("css/freelancer.css")"/>
+
+    @* Theme CSS for pokemon type colors *@
+    <link rel="stylesheet" href="@routes.Assets.versioned("css/colors.css")"/>
+
+    @* Theme CSS for pokemon tweets *@
+    <link rel="stylesheet" href="@routes.Assets.versioned("css/extra.css")"/>
+
+    @* Theme CSS for detailed view page *@
+    <link rel="stylesheet" href="@routes.Assets.versioned("css/pokecards.css")"/>
+
+    @* Use jquery scripts *@
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous">
+    </script>
+
+    @* Use bootstrap scripts *@
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+
+    @* Use custom navbar script *@
+    <script type='text/javascript' src="@routes.Assets.versioned("javascripts/navbar.js")"></script>
+
+      @* Use react scripts *@
+      @* See http://ticofab.io/react-js-tutorial-with-play_scala_webjars/ *@
+      @* See https://stackoverflow.com/questions/28347769/why-cant-i-access-the-file-react-js-from-the-react-0-12-2-webjar *@
+      <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("react.js"))'></script>
+      <script type='text/javascript' src='@routes.WebJarAssets.at(webJarAssets.locate("react-dom.js"))'></script>
+    @* Use react autosuggest script for search bar *@
+    <script type='text/javascript'
+            src="https://unpkg.com/react-autosuggest/dist/standalone/autosuggest.js"></script>"
+            @*src='https://cdn.jsdelivr.net/webjars/org.webjars.npm/react-autosuggest/8.0.0/dist/standalone/autosuggest.js'>
+    </script>*@
+
+
+
+  </head>
+  <body>
+    <div id="root"></div>
+      @content
+  </body>
 </html>

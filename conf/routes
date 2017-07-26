@@ -1,22 +1,38 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
+# Configuring a REST API
 # ~~~~
 
-# An example controller showing a sample home page
-GET     /                           controllers.HomeController.index
-# My pokemon example controller showing all pokemons
-GET     /pokemons                   controllers.Pokemons.list
-# An example controller showing how to use dependency injection
-GET     /count                      controllers.CountController.count
-# An example controller showing how to write asynchronous code
-GET     /message                    controllers.AsyncController.message
-# My pokemon example controller showing the details of a pokemon
-GET     /pokemon/:name              controllers.AsyncController.getName(name)
+
+# Main React-based entries
+GET     /                               controllers.ReactController.index
+GET     /pokecard/:name                 controllers.ReactController.pokemon(name)
+
+
+# Pokemon name list
+GET     /pokemons/                      controllers.PokemonController.index()
+
+
+# Likes/dislikes aka opinions
+POST    /pokemons/like/:name            controllers.OpinionController.addLike(name)
+POST    /pokemons/dislike/:name         controllers.OpinionController.addDisLike(name)
+GET     /pokemons/opinions/:name        controllers.OpinionController.getOpinion(name)
+
+# Stat access, backed up by DB
+# For individual pokemons
+GET     /pokemons/stats/:name           controllers.StatsController.getStats(name)
+
+# For types
+GET     /types/stats/:typename          controllers.StatsController.getTypeStats(typename)
+
+
+# Tweets
+GET     /twitterfeed/:name              controllers.TwitterController.get(name)
+
+
+# React test
+GET     /webjars/*file                  controllers.WebJarAssets.at(file)
+
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
-
-# Allow dynamically locate imported libraries
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
-# Allow a Play Controller wrapper locating and serving WebJars assets
-GET     /webjars/*file              controllers.WebJarAssets.at(file)
+GET     /assets/*file                   controllers.Assets.versioned(path="/public", file: Asset)

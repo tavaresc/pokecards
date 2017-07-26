@@ -7,7 +7,7 @@
 
 //import React, { Component } from 'react';
 
-class Pokemon extends Component {
+class Pokemon extends React.Component {
     constructor(props) {
         super(props);
         this.state = { stats: {} };
