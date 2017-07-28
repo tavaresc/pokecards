@@ -100,8 +100,8 @@ class API @Inject()(ws:WSClient, cache: CacheApi)(implicit exec: ExecutionContex
     // define cache (of Play) key
     val key = "all_pokemons"
 
-    // Explicit type coercion seems to help here in not having server erros
-    val pokemonNameList: Option[List[String]] = None // cache.get(key)
+    // Explicit type coercion seems to help here in not having server errors
+    val pokemonNameList: Option[List[String]] = cache.get(key)
     pokemonNameList match {
       case None =>
         Logger.debug("Pokemon url:" + url)
@@ -120,7 +120,7 @@ class API @Inject()(ws:WSClient, cache: CacheApi)(implicit exec: ExecutionContex
        pokemonNameList.map {
           list =>
             Logger.debug("Found %d pokemons : ".format(list.length) + list.toString())
-              // cache.set(key, list, 5.minutes)
+            cache.set(key, list, 2.hours)
             list
     }
       case Some(pokemons) => Future { pokemons }

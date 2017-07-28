@@ -22,7 +22,7 @@ class Pokemon extends React.Component {
             .then(response =>  response.json() )
             .then(data => {
                 that.setState({ stats: data });
-                console.log(name, " has ", data);
+                //console.log(name, " has ", data);
             });
     }
 
@@ -51,8 +51,8 @@ class Pokemon extends React.Component {
     }
 
     render() {
-        console.log("Pokemon - sprite: " + this.state.sprite);
-        console.log("Pokemon - types: " + this.state.stats.types);
+        // console.log("Pokemon - sprite: " + this.state.sprite);
+        // console.log("Pokemon - types: " + this.state.stats.types);
         return (
             <div className={this.getStyle(this.state.stats.types)}>
                 {this.renderSprite()}

@@ -32,14 +32,38 @@ class Portfolio extends React.Component {
         var url = "/pokemons/";
         fetch(url).then(r => r.json()).then(
             d => {
-                console.log("Portfolio pks: " + d.length);
-                var choice = d.slice(0, 100).sort();
+                // console.log("Portfolio pks: " + d);
+                //console.log("Hey", d.slice(0, 150).map(e => "\"" + e + "\""));
+                var howmany = 500; // Between 10 & 811
+                var choice = d.slice(0, howmany).sort();
                 this.setState({
                     pokemons: choice,
                     selectable: choice
                 });
             }
         );
+    }
+
+    // Replace componentDidMount by this function in case it is problematic
+    componentDidMountHardCoded() {
+        var pokemons = ["bulbasaur","ivysaur","venusaur","charmander","charmeleon","charizard","squirtle","wartortle",
+            "blastoise","caterpie","metapod","butterfree","weedle","kakuna","beedrill","pidgey","pidgeotto","pidgeot",
+            "rattata","raticate","spearow","fearow","ekans","arbok","pikachu","raichu","sandshrew","sandslash",
+            "nidoran-f","nidorina","nidoqueen","nidoran-m","nidorino","nidoking","clefairy","clefable","vulpix",
+            "ninetales","jigglypuff","wigglytuff","zubat","golbat","oddish","gloom","vileplume","paras","parasect",
+            "venonat","venomoth","diglett","dugtrio","meowth","persian","psyduck","golduck","mankey","primeape",
+            "growlithe","arcanine","poliwag","poliwhirl","poliwrath","abra","kadabra","alakazam","machop","machoke",
+            "machamp","bellsprout","weepinbell","victreebel","tentacool","tentacruel","geodude","graveler","golem","ponyta",
+            "rapidash","slowpoke","slowbro","magnemite","magneton","farfetchd","doduo","dodrio","seel","dewgong",
+            "grimer","muk","shellder","cloyster","gastly","haunter","gengar","onix","drowzee","hypno","krabby",
+            "kingler","voltorb","electrode","exeggcute","exeggutor","cubone","marowak","hitmonlee","hitmonchan",
+            "lickitung","koffing","weezing","rhyhorn","rhydon","chansey","tangela","kangaskhan","horsea","seadra",
+            "goldeen","seaking","staryu","starmie","mr-mime","scyther","jynx","electabuzz","magmar","pinsir","tauros",
+            "magikarp","gyarados","lapras","ditto","eevee","vaporeon","jolteon","flareon","porygon","omanyte","omastar"].sort();
+        this.setState({
+            pokemons: pokemons,
+            selectable: pokemons
+        });
     }
 
     signalEnter() {
@@ -60,7 +84,7 @@ class Portfolio extends React.Component {
                     <div className="row" id="search">
                         <div className="col-lg-4 col-lg-offset-4 text-center">
 
-                            <Autocomplete name={"Test"}
+                            <Autocomplete name={"Pokecomplete"}
                                           pokemons={this.state.pokemons}
                                           updateParent={this.onSearchChange}
                                           resetParent={this.resetSelectable}/>
